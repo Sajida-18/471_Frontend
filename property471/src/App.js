@@ -25,6 +25,7 @@ class App  extends React.Component {
   render() {
     return(
       <div>
+        <Hello />
         <header>the data that i got</header>
         <hr />
         {this.state.details.map((out) => (
