@@ -1,6 +1,8 @@
+
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import './SignupLogin.css'; 
+import './SignupLogin.css'; // Import your CSS file
 
 function SignupLogin() {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -11,12 +13,12 @@ function SignupLogin() {
   };
 
   const handleSignUp = () => {
-    
+    // You can add password validation here
     const password = document.getElementById('password').value;
     if (password) {
       navigate('/dashboard');
     } else {
-      
+      // Password not provided, you can show an error message or handle it as needed.
       alert('Please provide a password');
     }
   }
@@ -24,9 +26,9 @@ function SignupLogin() {
   return (
     <div>
       <div className={`container ${isSignIn ? 'sign-in' : 'sign-up'}`}>
-       
+        {/* FORM SECTION */}
         <div className="row">
-        
+          {/* SIGN UP */}
           <div className="col align-items-center flex-col sign-up">
             <div className="form-wrapper align-items-center">
               <div className="form sign-up">
@@ -54,11 +56,11 @@ function SignupLogin() {
                   <i className='bx bxs-lock-alt'></i>
                   <input type="Address" placeholder="Address" required />
                 </div>
-                <button >
+                <button onClick={handleSignUp}>
                   Sign Up
-                
+                  {/* Sign up */}
                 </button>
-                
+                {/* ... (rest of the sign-up section) */}
                 <p>
                   <span>Already have an account?</span>
                   <b onClick={toggle} className="pointer">
@@ -68,7 +70,8 @@ function SignupLogin() {
               </div>
             </div>
           </div>
-        
+          {/* END SIGN UP */}
+          {/* SIGN IN */}
           <div className="col align-items-center flex-col sign-in">
             <div className="form-wrapper align-items-center">
               <div className="form sign-in">
@@ -78,13 +81,13 @@ function SignupLogin() {
                 </div>
                 <div className="input-group">
                   <i className='bx bxs-lock-alt'></i>
-                  <input type="password" placeholder="Password" required />
+                  <input type="password" placeholder="Password" />
                 </div>
-                <button onClick={handleSignUp} >
+                <button onClick={handleSignUp}>
                   Sign in
-                 
+                  {/* Sign in */}
                 </button>
-                
+                {/* ... (rest of the sign-in section) */}
                 <p>
                   <b>Forgot password?</b>
                 </p>
@@ -99,11 +102,12 @@ function SignupLogin() {
             <div className="form-wrapper">
             </div>
           </div>
-       
+          {/* END SIGN IN */}
         </div>
-        
+        {/* END FORM SECTION */}
+        {/* CONTENT SECTION */}
         <div className="row content-row">
-          
+          {/* SIGN IN CONTENT */}
           <div className="col align-items-center flex-col">
             <div className="text sign-in">
               <h2>Welcome</h2>
@@ -111,7 +115,8 @@ function SignupLogin() {
             <div className="img sign-in">
             </div>
           </div>
-          
+          {/* END SIGN IN CONTENT */}
+          {/* SIGN UP CONTENT */}
           <div className="col align-items-center flex-col">
             <div className="img sign-up">
             </div>
@@ -119,9 +124,9 @@ function SignupLogin() {
               <h2>Join with us</h2>
             </div>
           </div>
-        
+          {/* END SIGN UP CONTENT */}
         </div>
-    
+        {/* END CONTENT SECTION */}
       </div>
     </div>
   );

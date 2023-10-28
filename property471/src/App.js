@@ -99,26 +99,26 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-} from "react-router-dom";
+   } from "react-router-dom";
 
 
 function App() {
-  
+
   const userType = " "
   
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/Dashboard" element={<div><Navbar userType={userType} /><Dashboard /></div>} />
-          <Route path="/HireEmployee" element={<div><Navbar userType={userType}/><HireEmployee /></div>} />
-          <Route path="/MarketPlace" element={<div><Navbar userType={userType} /><MarketPlace /></div>} />
-          <Route path="/Notification" element={<div><Navbar userType={userType} /><Notification/></div>} />
-          <Route path="/" element={<div><Navbar userType={userType}/><Home heading="Welcome" /></div>} />
-          <Route path="/SignupLogin" element={<SignupLogin />} />
+      <Router> 
+      <Routes>
+      <Route path="/Dashboard" element={<div><Navbar userType={userType} /><Dashboard /></div>} />
+      <Route path="/HireEmployee" element={<div><Navbar userType={userType}/><HireEmployee /></div>} />
+      <Route path="/MarketPlace" element={<div><Navbar userType={userType} /><MarketPlace /></div>} />
+      <Route path="/Notification" element={<div><Navbar userType={userType} /><Notification/></div>} />
+      <Route path="/" element={<div><Navbar userType={userType}/><Home heading="Welcome" /></div>} />
+      <Route path="/SignupLogin" element={<SignupLogin />} />
           
-        </Routes>
-      </Router>
+   </Routes>
+       </Router>
     </>
   );
 }
