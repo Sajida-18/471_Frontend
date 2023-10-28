@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function Home(props) {
+function Home(props) {
   return (
     <div>
-      <h1>Home_Page-{props.heading}</h1>
+      {props.heading}
     </div>
   )
 }
+
+export default Home

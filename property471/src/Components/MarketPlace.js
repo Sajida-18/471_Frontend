@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Support() {
+export default function MarketPlace() {
   return (
     <div>
-      <h1>Support page</h1>
+      Marketplace
     </div>
   )
 }

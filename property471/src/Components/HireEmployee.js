@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Agent() {
+export default function HireEmployee() {
   return (
     <div>
-      <h1>Agent page</h1>
+      <h1>employee</h1>
     </div>
   )
 }
