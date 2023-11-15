@@ -97,7 +97,7 @@ import Navbar from './Components/Navbar';
 import Notification from './Components/Notification';
 import SignupLogin from './Components/SignupLogin';
 import UserDashboard from './Components/UserDashboard';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -109,19 +109,25 @@ import {
 function App() {
 
   const [userType,setUserType]=useState("");
+  const [userId,setUserId]=useState("");
+  useEffect(() => {
+    console.log(`UseEffect theke ${userId}`);
+  }, [userId]);
+
   
   return (
     <>
       <Router> 
+      
       <Routes>
-      <Route path="/Dashboard" element={<div><Navbar userType={userType} /><Dashboard /></div>} />
-      <Route path="/UserDashboard" element={<div><Navbar userType={userType} /><UserDashboard /></div>} />
-      <Route path="/AgentDashboard" element={<div><Navbar userType={userType} /><AgentDashboard/></div>} />
-      <Route path="/HireEmployee" element={<div><Navbar userType={userType}/><HireEmployee /></div>} />
-      <Route path="/MarketPlace" element={<div><Navbar userType={userType} /><MarketPlace /></div>} />
-      <Route path="/Notification" element={<div><Navbar userType={userType} /><Notification/></div>} />
-      <Route path="/" element={<div><Navbar userType={userType}/><Home heading="Welcome" /></div>} />
-      <Route path="/SignupLogin" element={<SignupLogin setUserType={setUserType} />} />
+      <Route path="/Dashboard" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><Dashboard /></div>} />
+      <Route path="/UserDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><UserDashboard /></div>} />
+      <Route path="/AgentDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentDashboard/></div>} />
+      <Route path="/HireEmployee" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><HireEmployee /></div>} />
+      <Route path="/MarketPlace" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><MarketPlace /></div>} />
+      <Route path="/Notification" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><Notification/></div>} />
+      <Route path="/" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><Home heading="Welcome" /></div>} />
+      <Route path="/SignupLogin" element={<SignupLogin setUserType={setUserType} userId={userId}  setUserId={setUserId}/>} />
           
    </Routes>
        </Router>
