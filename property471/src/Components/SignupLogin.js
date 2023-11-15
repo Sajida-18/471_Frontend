@@ -1,12 +1,18 @@
-// import React, { useState } from 'react';
+
+
+
+// import React, {useState } from 'react';
+
 // import { useNavigate } from 'react-router';
 // import './SignupLogin.css'; // Import your CSS file
+// import axios from 'axios';
 
-// function SignupLogin() {
+
+// function SignupLogin({setUserType}) {
 //   const [isSignIn, setIsSignIn] = useState(true);
 //   const [signInUsername, setSignInUsername] = useState('');
 //   const [signInPassword, setSignInPassword] = useState('');
-//   const [signInErrorMessage, setSignInErrorMessage] = useState(''); // Add error message state for sign-in
+//   const [signInErrorMessage, setSignInErrorMessage] = useState('');
 
 //   const [username, setUsername] = useState('');
 //   const [email, setEmail] = useState('');
@@ -14,13 +20,14 @@
 //   const [phone, setPhone] = useState('');
 //   const [address, setAddress] = useState('');
 //   const [confirmPassword, setConfirmPassword] = useState('');
-//   const [signUpErrorMessage, setSignUpErrorMessage] = useState(''); // Add error message state for sign-up
+//   const [signUpErrorMessage, setSignUpErrorMessage] = useState('');
+  
 
 //   const navigate = useNavigate();
 
 //   const toggle = () => {
 //     setIsSignIn(!isSignIn);
-//     clearFormFields(); // Clear form fields when switching between sign-in and sign-up
+//     clearFormFields();
 //   };
 
 //   const clearFormFields = () => {
@@ -37,27 +44,88 @@
 //   };
 
 //   const handleSignIn = () => {
-//     if (signInUsername && signInPassword) {
-//       // Redirect to the dashboard or handle the sign-in logic
-//       navigate('/dashboard');
-//     } else {
-//       // Username or password missing, set an error message
-//       setSignInErrorMessage(<div style={{color: "red"}}>Username and password are required</div>);
-      
+//     if (!signInUsername || !signInPassword) {
+//       // If either username or password is missing
+//       setSignInErrorMessage(<div style={{ color: "red" }}>Both username and password are required</div>);
+//       return;
 //     }
-//   }
-  
+
+//     const signInData = {
+//       user_id: signInUsername,
+//       password: signInPassword,
+//     };
+
+//     axios
+//       .post('http://127.0.0.1:8000/api/signup_login/login', signInData, {
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       })
+//       .then(response => {
+        
+//         if (response.status === 201) {
+         
+//           // Authentication successful
+//           console.log('Authentication successful.');
+//           // You can perform actions based on success, such as redirecting to the dashboard
+//           navigate('/dashboard');
+//         } else {
+//           // Handle other HTTP status codes as needed
+//           console.error('Authentication failed with status code:', response.status);
+          
+//         }
+//       })
+//       .catch(error => {
+//         // Handle any network or server errors
+//         console.error('Network/server error:', error);
+//        setSignInErrorMessage(<div style={{ color: "red" }}>Authentication failed</div>);
+//       });
+//   };
+
 //   const handleSignUp = () => {
-//     if  (username && password && confirmPassword && phone && address && email){
-//       if (password === confirmPassword )  {
-//         // Passwords match, proceed with sign-up logic
-//         navigate('/dashboard');
-//       } 
-//       else{
-//         setSignUpErrorMessage(<div style={{color :"red"}}>Passwords do not match</div>);
+//     if (username && password && confirmPassword && phone && address && email) {
+//       if (password === confirmPassword) {
+        
+//         const userData = {
+//           name: username,
+//           email: email,
+//           password: password,
+//           phone: phone,
+//           address: address,
+//         };
+
+//         axios
+//         .post('http://127.0.0.1:8000/api/signup_login/signup', userData, {
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//         })
+//           .then(response => {
+//             setUserType(response.data["data"].type)
+//             console.log(response.data["data"].type)
+//             if (response.status === 201) {
+  
+             
+//               // Registration was successful
+//               console.log('Registration was successful.');
+//               alert(response);
+//               // You can perform actions based on success, such as redirecting to the dashboard
+//               navigate('/UserDashboard');
+
+//             } else {
+//               // Handle other HTTP status codes as needed
+//               console.error('Registration failed with status code:', response.status);
+//             }
+//           })
+//           .catch(error => {
+//             // Handle any network or server errors
+//             console.error('Network/server error:', error);
+//           });
+//       } else {
+//         setSignUpErrorMessage(<div style={{ color: "red" }}>Passwords do not match</div>);
 //       }
-//     }else{
-//         setSignUpErrorMessage(<div style={{color :"red"}}>Required</div>);
+//     } else {
+//       setSignUpErrorMessage(<div style={{ color: "red" }}>All fields are required</div>);
 //     }
 //   }
 
@@ -108,34 +176,37 @@
 //                     required
 //                   />
 //                 </div>
-//                 {signUpErrorMessage && <div className="error-message">{signUpErrorMessage}</div>}
+                
 //                 <div className="input-group">
 //                   <i className='bx bxs-lock-alt'></i>
-//                   <input 
-//                   type="Phone" 
-//                   placeholder="Phone" 
-//                   value={phone}
-//                   onChange={(e) => setPhone(e.target.value)}
-//                   required 
+//                   <input
+//                     type="Phone"
+//                     placeholder="Phone"
+//                     value={phone}
+//                     onChange={(e) => setPhone(e.target.value)}
+//                     required
 //                   />
 //                 </div>
 //                 <div className="input-group">
 //                   <i className='bx bxs-lock-alt'></i>
 //                   <input
-//                   type="Address" 
-//                   placeholder="Address" 
-//                   value={address}
-//                   onChange={(e) => setAddress(e.target.value)}
-//                   required 
+//                     type="Address"
+//                     placeholder="Address"
+//                     value={address}
+//                     onChange={(e) => setAddress(e.target.value)}
+//                     required
 //                   />
 //                 </div>
+//                 {signUpErrorMessage && <div className="error-message">{signUpErrorMessage}</div>}
+               
 //                 <button onClick={handleSignUp}>
 //                   Sign Up
 //                 </button>
+                
 //                 <p>
 //                   <span>Already have an account?</span>
 //                   <b onClick={toggle} className="pointer">
-//                     Sign in here
+//                     Login here
 //                   </b>
 //                 </p>
 //               </div>
@@ -148,7 +219,7 @@
 //                   <i className='bx bxs-user'></i>
 //                   <input
 //                     type="text"
-//                     placeholder="Username"
+//                     placeholder="User_id"
 //                     value={signInUsername}
 //                     onChange={(e) => setSignInUsername(e.target.value)}
 //                     required
@@ -166,7 +237,7 @@
 //                 </div>
 //                 {signInErrorMessage && <div className="error-message">{signInErrorMessage}</div>}
 //                 <button onClick={handleSignIn}>
-//                   Sign in
+//                   Login
 //                 </button>
 //                 <p>
 //                   <b>Forgot password?</b>
@@ -183,6 +254,7 @@
 //             </div>
 //           </div>
 //         </div>
+        
 //       </div>
 //     </div>
 //   );
@@ -190,12 +262,18 @@
 
 // export default SignupLogin;
 
-import React, { useState } from 'react';
+
+
+import React, {useState } from 'react';
+
 import { useNavigate } from 'react-router';
+import { Link} from 'react-router-dom';
 import './SignupLogin.css'; // Import your CSS file
 import axios from 'axios';
+import Navbar from './Navbar';
 
-function SignupLogin() {
+
+function SignupLogin({setUserType}) {
   const [isSignIn, setIsSignIn] = useState(true);
   const [signInUsername, setSignInUsername] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
@@ -208,6 +286,9 @@ function SignupLogin() {
   const [address, setAddress] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [signUpErrorMessage, setSignUpErrorMessage] = useState('');
+  //const [userType,setUserType]=useState("");
+  const [userId, setUserId] = useState('');
+  
 
   const navigate = useNavigate();
 
@@ -230,13 +311,57 @@ function SignupLogin() {
   };
 
   const handleSignIn = () => {
-    if (signInUsername && signInPassword) {
-      // Redirect to the dashboard or handle the sign-in logic
-      navigate('/dashboard');
-    } else {
-      setSignInErrorMessage(<div style={{ color: "red" }}>Username and password are required</div>);
+    if (!signInUsername || !signInPassword) {
+      setSignInErrorMessage(<div style={{ color: 'red' }}>Both username and password are required</div>);
+      return;
     }
-  }
+  
+    const signInData = {
+      user_id: signInUsername,
+      password: signInPassword,
+    };
+  
+    axios
+      .post('http://127.0.0.1:8000/api/signup_login/login', signInData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        if (response.status === 201) {
+          console.log('Authentication successful.');
+          
+          // Set the userId state
+          setUserId(response.data.data.user_id);
+          console.log(response.data.data.user_id);
+          setUserType(response.data.data.type);
+  
+          // Navigate based on user type
+          switch (response.data.data.type) {
+            case 'user':
+              navigate('/UserDashboard');
+              break;
+            case 'agent':
+              navigate('/AgentDashboard');
+              break;
+            case 'admin':
+              navigate('/AdminDashboard');
+              break;
+            default:
+              console.error('Unknown user type:', response.data.data.type);
+              // Handle other user types or show an error message
+              break;
+          }
+        } else {
+          console.error('Authentication failed with status code:', response.status);
+          setSignInErrorMessage(<div style={{ color: 'red' }}>Authentication failed</div>);
+        }
+      })
+      .catch((error) => {
+        console.error('Network/server error:', error);
+        setSignInErrorMessage(<div style={{ color: 'red' }}>Authentication failed</div>);
+      });
+  };
 
   const handleSignUp = () => {
     if (username && password && confirmPassword && phone && address && email) {
@@ -257,11 +382,18 @@ function SignupLogin() {
           },
         })
           .then(response => {
+            // setUserType(response.data["data"].type)
+            
             if (response.status === 201) {
-              // Registration was successful
+  
+             // Registration was successful
+              setUserType(response.data.data.type)
               console.log('Registration was successful.');
+              
+              console.log(response.data["data"].type)
               // You can perform actions based on success, such as redirecting to the dashboard
-              navigate('/Dashboard');
+              navigate('/UserDashboard');
+
             } else {
               // Handle other HTTP status codes as needed
               console.error('Registration failed with status code:', response.status);
@@ -326,7 +458,7 @@ function SignupLogin() {
                     required
                   />
                 </div>
-                {signUpErrorMessage && <div className="error-message">{signUpErrorMessage}</div>}
+                
                 <div className="input-group">
                   <i className='bx bxs-lock-alt'></i>
                   <input
@@ -347,13 +479,16 @@ function SignupLogin() {
                     required
                   />
                 </div>
+                {signUpErrorMessage && <div className="error-message">{signUpErrorMessage}</div>}
+                <Link to="/UserDashboard">
                 <button onClick={handleSignUp}>
                   Sign Up
                 </button>
+                </Link>
                 <p>
                   <span>Already have an account?</span>
                   <b onClick={toggle} className="pointer">
-                    Sign in here
+                    Login here
                   </b>
                 </p>
               </div>
@@ -366,7 +501,7 @@ function SignupLogin() {
                   <i className='bx bxs-user'></i>
                   <input
                     type="text"
-                    placeholder="Username"
+                    placeholder="User_id"
                     value={signInUsername}
                     onChange={(e) => setSignInUsername(e.target.value)}
                     required
@@ -384,7 +519,7 @@ function SignupLogin() {
                 </div>
                 {signInErrorMessage && <div className="error-message">{signInErrorMessage}</div>}
                 <button onClick={handleSignIn}>
-                  Sign in
+                  Login
                 </button>
                 <p>
                   <b>Forgot password?</b>
@@ -401,11 +536,22 @@ function SignupLogin() {
             </div>
           </div>
         </div>
+        {<Navbar setUserType={setUserType} userId={userId} />}
+
       </div>
     </div>
   );
 }
 
 export default SignupLogin;
+
+
+
+
+
+
+
+
+
 
 

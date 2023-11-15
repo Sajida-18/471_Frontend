@@ -1,12 +1,11 @@
 import React from 'react'
 
-export default function Dashboard() {
+export default function UserDashboard() {
   return (
     <div>
-      Dashboard
+      UserDashboard
     </div>
   )
 }
-
 
 

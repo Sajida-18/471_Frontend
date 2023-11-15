@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Hello() {
+export default function AgentDashboard() {
   return (
     <div>
-      Hello world
+      agent dashboard
     </div>
   )
 }

@@ -88,6 +88,7 @@
 // export default App;
 
 
+import AgentDashboard from './Components/AgentDashboard';
 import Dashboard from './Components/Dashboard';
 import HireEmployee from './Components/HireEmployee';
 import Home from './Components/Home';
@@ -95,6 +96,8 @@ import MarketPlace from './Components/MarketPlace';
 import Navbar from './Components/Navbar';
 import Notification from './Components/Notification';
 import SignupLogin from './Components/SignupLogin';
+import UserDashboard from './Components/UserDashboard';
+import { useState } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -102,20 +105,23 @@ import {
    } from "react-router-dom";
 
 
+
 function App() {
 
-  const userType = " "
+  const [userType,setUserType]=useState("");
   
   return (
     <>
       <Router> 
       <Routes>
       <Route path="/Dashboard" element={<div><Navbar userType={userType} /><Dashboard /></div>} />
+      <Route path="/UserDashboard" element={<div><Navbar userType={userType} /><UserDashboard /></div>} />
+      <Route path="/AgentDashboard" element={<div><Navbar userType={userType} /><AgentDashboard/></div>} />
       <Route path="/HireEmployee" element={<div><Navbar userType={userType}/><HireEmployee /></div>} />
       <Route path="/MarketPlace" element={<div><Navbar userType={userType} /><MarketPlace /></div>} />
       <Route path="/Notification" element={<div><Navbar userType={userType} /><Notification/></div>} />
       <Route path="/" element={<div><Navbar userType={userType}/><Home heading="Welcome" /></div>} />
-      <Route path="/SignupLogin" element={<SignupLogin />} />
+      <Route path="/SignupLogin" element={<SignupLogin setUserType={setUserType} />} />
           
    </Routes>
        </Router>
