@@ -46,7 +46,7 @@ const Dashboard = () => {
         <Row className="mt-4">
           <Col>
             {!isEditingProfile && (
-              <Button variant="info" className="w-90" onClick={handleEditProfile}>
+              <Button variant="primary" className="w-90" onClick={handleEditProfile}>
                 Edit Profile
               </Button>
             )}
@@ -92,7 +92,7 @@ const Dashboard = () => {
       <div className="mt-4">
         <h2>Your Properties</h2>
         {!isAddingProperty && (
-          <Button variant="info" className="w-100" onClick={handleAddProperty}>
+          <Button variant="primary" className="w-100" onClick={handleAddProperty}>
             Add Property
           </Button>
         )}
