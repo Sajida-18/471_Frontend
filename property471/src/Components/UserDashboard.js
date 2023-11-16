@@ -12,10 +12,10 @@ const UserDashboard = () => {
   const [email, setEmail] = useState('');
 
   const [propertyName, setPropertyName] = useState('');
-  const [propertyType, setPropertyType] = useState('');
+  const [propertyPrice, setPropertyPrice] = useState('');
   const [address, setAddress] = useState('');
   const [size, setSize] = useState('');
-  const [image, setImage] = useState('');
+  //const [image, setImage] = useState('');
 
   const navigate = useNavigate();
 
@@ -109,20 +109,20 @@ const UserDashboard = () => {
               onChange={(e) => setPropertyName(e.target.value)}
             />
           </Form.Group>
-          <Form.Group controlId="formPropertyType">
-            <Form.Label>Property Name</Form.Label>
+          <Form.Group controlId="formPropertyPrice">
+            <Form.Label>Property price</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter property type"
-              value={propertyType}
-              onChange={(e) => setPropertyType(e.target.value)}
+              placeholder="Enter property price"
+              value={propertyPrice}
+              onChange={(e) => setPropertyPrice(e.target.value)}
             />
           </Form.Group>
           <Form.Group controlId="formAddress">
-            <Form.Label>Address</Form.Label>
+            <Form.Label>Location</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter address"
+              placeholder="Enter property location"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -134,15 +134,6 @@ const UserDashboard = () => {
               placeholder="Enter size"
               value={size}
               onChange={(e) => setSize(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="formImage">
-            <Form.Label>Image URL</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter image URL"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
             />
           </Form.Group>
           <Button variant="success" onClick={handleSaveProperty} className="mt-3">
