@@ -53,27 +53,29 @@ function Navbar(props) {
   // Define the navigation items based on the user type and login status
   const navItems = {
     admin: [
-      { label: 'Admin Dashboard', path: '/Dashboard' },
-      { label: 'Transaction', path: '/' },
-      { label: 'Hire', path: '/' },
+      { label: 'Admin Dashboard', path: '/AdminDashboard' },
+      { label: 'Transaction', path: '/Transaction' },
+      { label: 'Hire', path: '/Hire' },
+      { label: 'Employee Details', path: '/EmployeeDetails' },
       { label: 'Logout', path: '/', onClick: handleLogout },
     ],
     agent: [
       { label: 'Agent Dashboard', path: '/AgentDashboard' },
-      { label: 'Marketplace', path: '/MarketPlace' },
-      { label: 'Offers', path: '/' },
-      { label: 'Notification', path: '/' },
+      { label: 'Marketplace', path: '/AgentMarketplace' },
+      { label: 'Offers', path: '/Offers' },
+      { label: 'Notification', path: '/AgentNotification' },
       { label: 'Logout', path: '/', onClick: handleLogout },
     ],
     user: [
       { label: 'User Dashboard', path: '/UserDashboard' },
-      { label: 'Marketplace', path: '/MarketPlace' },
-      { label: 'Notification', path: '/' },
+      { label: 'Marketplace', path: '/UserMarketPlace' },
+      { label: 'Notification', path: '/UserNotification' },
+      { label:  'Hire employee', path: '/UserHireEmployee'},
       { label: 'Logout', path: '/', onClick: handleLogout },
     ],
     default: [
       { label: 'Marketplace', path: '/MarketPlace' },
-      { label: 'Hire Employee', path: '/' },
+      { label: 'Hire Employee', path: '/HireEmployee' },
       { label: 'Signup/Login', path: '/SignupLogin', onClick: handleLogin },
     ],
   };
