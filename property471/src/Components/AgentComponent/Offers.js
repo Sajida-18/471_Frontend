@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Notification() {
+export default function Offers() {
   return (
     <div>
-      Notification
+      Offers
     </div>
   )
 }
