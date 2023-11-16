@@ -427,7 +427,7 @@ function SignupLogin({ setUserType, userId,setUserId}) {
   };
 
   return (
-    <div>
+    <div className= "signupLogin">
       <div className={`container ${isSignIn ? "sign-in" : "sign-up"}`}>
         <div className="row">
           <div className="col align-items-center flex-col sign-up">
@@ -536,9 +536,9 @@ function SignupLogin({ setUserType, userId,setUserId}) {
                   <div className="error-message">{signInErrorMessage}</div>
                 )}
                 <button onClick={handleSignIn}>Login</button>
-                <p>
+                {/* <p>
                   <b>Forgot password?</b>
-                </p>
+                </p> */}
                 <p>
                   <span>Don't have an account?</span>
                   <b onClick={toggle} className="pointer">

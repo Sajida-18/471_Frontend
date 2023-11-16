@@ -1,8 +1,21 @@
+// import React from 'react'
+
+// export default function UserDashboard() {
+//   return (
+//     <div>
+//       userDasboard
+//     </div>
+//   )
+// }
+
+
+
+
 import React, { useState } from 'react';
 import { Container, Button, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const UserDashboard = () => {
+const Dashboard = () => {
   const [isEditingProfile, setEditingProfile] = useState(false);
   const [isAddingProperty, setAddingProperty] = useState(false);
 
@@ -12,10 +25,10 @@ const UserDashboard = () => {
   const [email, setEmail] = useState('');
 
   const [propertyName, setPropertyName] = useState('');
-  const [propertyPrice, setPropertyPrice] = useState('');
+  const [propertyType, setPropertyType] = useState('');
   const [address, setAddress] = useState('');
   const [size, setSize] = useState('');
-  //const [image, setImage] = useState('');
+  const [image, setImage] = useState('');
 
   const navigate = useNavigate();
 
@@ -37,9 +50,10 @@ const UserDashboard = () => {
     // After saving, navigate back to the main dashboard
     setAddingProperty(false);
   };
-
+   console.log(isEditingProfile)
   return (
-    <Container>
+     <div>
+    {/* <Container> */}
       <div className="bg-light p-4 mb-4 rounded-lg">
         <h1 className="text">Dashboard</h1>
         <p>{username}</p>
@@ -53,8 +67,9 @@ const UserDashboard = () => {
           </Col>
         </Row>
       </div>
-
+      {/* </Container> */}
       {isEditingProfile && (
+        
         <Form>
           <Form.Group controlId="formName">
             <Form.Label>Name</Form.Label>
@@ -109,20 +124,20 @@ const UserDashboard = () => {
               onChange={(e) => setPropertyName(e.target.value)}
             />
           </Form.Group>
-          <Form.Group controlId="formPropertyPrice">
-            <Form.Label>Property price</Form.Label>
+          <Form.Group controlId="formPropertyType">
+            <Form.Label>Property Name</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter property price"
-              value={propertyPrice}
-              onChange={(e) => setPropertyPrice(e.target.value)}
+              placeholder="Enter property type"
+              value={propertyType}
+              onChange={(e) => setPropertyType(e.target.value)}
             />
           </Form.Group>
           <Form.Group controlId="formAddress">
-            <Form.Label>Location</Form.Label>
+            <Form.Label>Address</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Enter property location"
+              placeholder="Enter address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -136,14 +151,24 @@ const UserDashboard = () => {
               onChange={(e) => setSize(e.target.value)}
             />
           </Form.Group>
+          <Form.Group controlId="formImage">
+            <Form.Label>Image URL</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter image URL"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </Form.Group>
           <Button variant="success" onClick={handleSaveProperty} className="mt-3">
             Save Property
           </Button>
         </Form>
       )}
-    </Container>
+    {/* // </Container> */}
+    </div>
+    
   );
 };
 
-export default UserDashboard;
-
+export default Dashboard;
