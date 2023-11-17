@@ -396,6 +396,7 @@ function SignupLogin({ setUserType, userId,setUserId}) {
 
             if (response.status === 201) {
               // Registration was successful
+              setUserId(response.data.data.user_id)
               setUserType(response.data.data.type);
               console.log("Registration was successful.");
 
