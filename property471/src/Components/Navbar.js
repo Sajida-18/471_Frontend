@@ -84,6 +84,7 @@ function Navbar(props) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    
       <div className="container-fluid">
         <Link className="navbar-brand text-white" to="/">
           Property471
