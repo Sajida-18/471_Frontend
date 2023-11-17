@@ -141,7 +141,7 @@ function App() {
       <Route path="/EmployeeDetails" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><EmployeeDetails/></div>} />
 
        {/* User componenst */}
-      <Route path="/UserDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><UserDashboard/></div>} />
+      <Route path="/UserDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><UserDashboard userId={userId}/></div>} />
       <Route path="/UserMarketplace" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserMarketplace/></div>} />
       <Route path="/UserNotification" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserNotification/></div>} />
       <Route path="/UserHireEmployee" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserHireemployee/></div>} />
@@ -163,6 +163,5 @@ function App() {
     </>
   );
 }
-
 export default App;
 
