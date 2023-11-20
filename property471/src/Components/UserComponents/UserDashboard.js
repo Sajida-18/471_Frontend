@@ -57,7 +57,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
           phone: number,
           address: address,
         };
-
+        console.log(userData)
         axios
           .post("http://127.0.0.1:8000/api/edit_access/user_edit", userData, {
             headers: {
@@ -65,15 +65,18 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
             },
           })
           .then((response) => {
-            // setUserType(response.data["data"].type)
+            //setUserType(response.data["data"].type)
+            console.log(response.data)
+            console.log(response.status)
 
             if (response.status === 201) {
               // Registration was successful
-              setUserId(response.data.data.user_id)
-              //setUserType(response.data.data.type);
+              // setUserId(response.data.data.user_id)
+              
+              // setUserType(response.data.data.type);
               console.log("Registration was successful.");
               setEditingProfile(false);
-              console.log(response.data["data"].type);
+              // console.log(response.data["data"].type);
               // You can perform actions based on success, such as redirecting to the dashboard
               
             } else {
@@ -88,12 +91,12 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
             // Handle any network or server errors
             console.error("Network/server error:", error);
           })
-          .finally(() => {
-            // This block will execute whether the request is successful or fails
-            setpassword('');
-            setconfirmPassword('');
-            setEditingProfile(false);
-          });
+          // .finally(() => {
+          //   // This block will execute whether the request is successful or fails
+          //   setpassword('');
+          //   setconfirmPassword('');
+          //   setEditingProfile(false);
+          // });
       } else {
         setEditProfileErrorMessage(
           <div style={{ color: "red" }}>Passwords do not match</div>
