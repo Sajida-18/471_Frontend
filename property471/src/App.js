@@ -122,13 +122,19 @@ import HireEmployee from './Components/HireEmployee';
 
 function App() {
 
-  const [userType,setUserType]=useState("");
-  const [userId,setUserId]=useState("");
+  const [userType,setUserType]=useState(localStorage.getItem("currentUserType") || "");
+  const [userId,setUserId]=useState(localStorage.getItem("currentUserId") || "");
   useEffect(() => {
     console.log(`UseEffect theke ${userId}`);
   }, [userId]);
 
+  useEffect(() => {
+    localStorage.setItem("currentUserType", userType);
+  }, [userType]);
   
+  useEffect(() => {
+    localStorage.setItem("currentUserId", userId);
+  }, [userId]);
   return (
     <>
       <Router> 
