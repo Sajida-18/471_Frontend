@@ -418,7 +418,7 @@ function SignupLogin({ setUserType, userId,setUserId}) {
               setUserType(response.data.data.type);
               // Set the modal message
               setModalMessage(
-                `Thank you for joining us! Use ${userId} as your user id to log in to your account.`
+                `Thank you for joining us! Use ${response.data.data.user_id} as your user id to log in to your account.`
               );
               // Open the modal
               setIsModalOpen(true);

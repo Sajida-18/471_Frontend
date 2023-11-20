@@ -70,7 +70,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
             if (response.status === 201) {
               // Registration was successful
               setUserId(response.data.data.user_id)
-              setUserType(response.data.data.type);
+              //setUserType(response.data.data.type);
               console.log("Registration was successful.");
               setEditingProfile(false);
               console.log(response.data["data"].type);

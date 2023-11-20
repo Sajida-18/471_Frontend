@@ -83,7 +83,7 @@ function Navbar(props) {
   const userTypeNavItems = isLoggedIn ? navItems[userType] || navItems.default : navItems.default;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#4ea685" }}>
     
       <div className="container-fluid">
         <Link className="navbar-brand text-white" to="/">
@@ -111,17 +111,6 @@ function Navbar(props) {
               </li>
             ))}
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
