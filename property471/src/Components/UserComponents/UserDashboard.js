@@ -76,6 +76,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
               // setUserType(response.data.data.type);
               console.log("Registration was successful.");
               setEditingProfile(false);
+              navigate("/UserDashboard")
               // console.log(response.data["data"].type);
               // You can perform actions based on success, such as redirecting to the dashboard
               
@@ -141,6 +142,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
               console.log(response.data["data"].type);
               // You can perform actions based on success, such as redirecting to the dashboard
               setAddingProperty(false);
+              fetchUserProperties()
             } else {
               // Handle other HTTP status codes as needed
               console.error(
