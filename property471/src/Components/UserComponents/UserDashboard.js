@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 //import {userId} from '../../App';
 
-const UserDashboard = ({userId}) => {
+const UserDashboard = ({userId, setUserId, setUserType}) => {
   const [isEditingProfile, setEditingProfile] = useState(false);
   const [isAddingProperty, setAddingProperty] = useState(false);
 
@@ -25,10 +25,15 @@ const UserDashboard = ({userId}) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
+  const [address, setaddress] = useState('');
+  const [password, setpassword] = useState('');
+  const [confirmPassword, setconfirmPassword] = useState('');
+  const [editProfileErrorMessage, setEditProfileErrorMessage] = useState("");
+
 
   const [propertyName, setPropertyName] = useState('');
   const [propertyPrice, setPropertyPrice] = useState('');
-  const [address, setAddress] = useState('');
+  const [location, setlocation] = useState('');
   const [size, setSize] = useState('');
   const [propertyErrorMessage, setPropertyErrorMessage] = useState("");
   //const [image, setImage] = useState('');
@@ -40,21 +45,80 @@ const UserDashboard = ({userId}) => {
   };
 
   const handleSaveProfile = () => {
-    // Perform save logic (e.g., API request to update user profile)
-    setEditingProfile(false);
+    if (name && password && confirmPassword && number && address && email) {
+      if (password === confirmPassword) {
+        const userData = {
+          user_id: userId,
+          name: name,
+          email: email,
+          password: password,
+          phone: number,
+          address: address,
+        };
+        console.log(userData)
+        axios
+          .post("http://127.0.0.1:8000/api/edit_access/user_edit", userData, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((response) => {
+            //setUserType(response.data["data"].type)
+            console.log(response.data)
+            console.log(response.status)
+
+            if (response.status === 201) {
+              // Registration was successful
+              // setUserId(response.data.data.user_id)
+              
+              // setUserType(response.data.data.type);
+              console.log("Registration was successful.");
+              setEditingProfile(false);
+              // console.log(response.data["data"].type);
+              // You can perform actions based on success, such as redirecting to the dashboard
+              
+            } else {
+              // Handle other HTTP status codes as needed
+              console.error(
+                "Registration failed with status code:",
+                response.status
+              );
+            }
+          })
+          .catch((error) => {
+            // Handle any network or server errors
+            console.error("Network/server error:", error);
+          })
+          // .finally(() => {
+          //   // This block will execute whether the request is successful or fails
+          //   setpassword('');
+          //   setconfirmPassword('');
+          //   setEditingProfile(false);
+          // });
+      } else {
+        setEditProfileErrorMessage(
+          <div style={{ color: "red" }}>Passwords do not match</div>
+        );
+      }
+    } else {
+      setEditProfileErrorMessage(
+        <div style={{ color: "red" }}>All fields are required</div>
+      );
+    }
   };
+    
 
   const handleAddProperty = () => {
     setAddingProperty(true);
   };
 
   const handleSaveProperty = () => {
-    if (propertyName && propertyPrice && address && size) {
+    if (propertyName && propertyPrice && location && size) {
       const propertyData = {
         user_id : userId,
         property_name : propertyName,
         property_price : propertyPrice,
-        property_location : address,
+        property_location : location,
         property_size : size,
       };
 
@@ -137,6 +201,37 @@ const UserDashboard = ({userId}) => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Group>
+              <Form.Group controlId="formAddress">
+                <Form.Label>Address</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Address"
+                  value={address}
+                  onChange={(e) => setaddress(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="formPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Password"
+                  value={password}
+                  onChange={(e) => setpassword(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="formconfirmPassword">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setconfirmPassword(e.target.value)}
+                />
+              </Form.Group>
+              {editProfileErrorMessage && (
+                <div className="error-message">{editProfileErrorMessage}</div>
+              )}
+              
               <Button variant="success" onClick={handleSaveProfile} className="mt-3">
                 Save Profile
               </Button>
@@ -174,13 +269,13 @@ const UserDashboard = ({userId}) => {
                   required
                 />
               </Form.Group>
-              <Form.Group controlId="formAddress">
+              <Form.Group controlId="formlocation">
                 <Form.Label>Location</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter property location"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  value={location}
+                  onChange={(e) => setlocation(e.target.value)}
                   required
                 />
               </Form.Group>

@@ -37,11 +37,6 @@ function Navbar(props) {
         // Handle any network or server errors
         console.error('Logout error:', error);
       });
-
-    // Additional logout logic if needed
-
-    // Redirect to the login page or any desired location
-    //navigate('/');
   };
   const handleLogin = () => {
         // Perform login actions and update the state
