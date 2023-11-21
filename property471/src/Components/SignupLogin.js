@@ -271,9 +271,25 @@ import React, {  useState } from "react";
 
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import "./SignupLogin.css"; // Import your CSS file
+import "./SignupLogin.css";
+import "./modal.css"; // Import your CSS file
 import axios from "axios";
 
+const CustomModal = ({ isOpen, message, onClose }) => {
+  return (
+    <div className={`custom-modal ${isOpen ? "open" : "closed"}`}>
+      <div className="modal-content">
+        <div className="modal-header">
+          <h2>Sign Up Successful!</h2>
+          <button onClick={onClose}>Close</button>
+        </div>
+        <div className="modal-body">
+          <p>{message}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 function SignupLogin({ setUserType, userId,setUserId}) {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -288,9 +304,11 @@ function SignupLogin({ setUserType, userId,setUserId}) {
   const [address, setAddress] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signUpErrorMessage, setSignUpErrorMessage] = useState("");
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
  
  
-  
   const navigate = useNavigate();
 
   const toggle = () => {
@@ -398,11 +416,19 @@ function SignupLogin({ setUserType, userId,setUserId}) {
               // Registration was successful
               setUserId(response.data.data.user_id)
               setUserType(response.data.data.type);
+              // Set the modal message
+              setModalMessage(
+                `Thank you for joining us! Use ${response.data.data.user_id} as your user id to log in to your account.`
+              );
+              // Open the modal
+              setIsModalOpen(true);
               console.log("Registration was successful.");
 
-              console.log(response.data["data"].type);
-              // You can perform actions based on success, such as redirecting to the dashboard
-              navigate("/UserDashboard");
+
+            
+
+            // Clear the form fields
+            clearFormFields();
             } else {
               // Handle other HTTP status codes as needed
               console.error(
@@ -498,9 +524,7 @@ function SignupLogin({ setUserType, userId,setUserId}) {
                 {signUpErrorMessage && (
                   <div className="error-message">{signUpErrorMessage}</div>
                 )}
-                <Link to="/UserDashboard">
                   <button onClick={handleSignUp}>Sign Up</button>
-                </Link>
                 <p>
                   <span>Already have an account?</span>
                   <b onClick={toggle} className="pointer">
@@ -551,7 +575,11 @@ function SignupLogin({ setUserType, userId,setUserId}) {
             <div className="form-wrapper"></div>
           </div>
         </div>
-        
+        <CustomModal
+        isOpen={isModalOpen}
+        message={modalMessage}
+        onClose={() => setIsModalOpen(false)}
+      />
       </div>
     </div>
   );
