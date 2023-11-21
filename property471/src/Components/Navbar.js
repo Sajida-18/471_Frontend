@@ -78,7 +78,7 @@ function Navbar(props) {
   const userTypeNavItems = isLoggedIn ? navItems[userType] || navItems.default : navItems.default;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#4ea685" }}>
     
       <div className="container-fluid">
         <Link className="navbar-brand text-white" to="/">

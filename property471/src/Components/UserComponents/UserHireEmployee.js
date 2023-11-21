@@ -1,14 +1,3 @@
-// import React from 'react'
-
-// export default function UserHireEmployee() {
-//   return (
-//     <div>
-//       user hire employee
-//     </div>
-//   )
-// }
-
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 

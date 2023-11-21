@@ -11,12 +11,13 @@
 
 
 
-import React, { useState } from 'react';
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 //import {userId} from '../../App';
 
+const UserDashboard = ({userId, setUserId, setUserType}) => {
 const UserDashboard = ({userId, setUserId, setUserType}) => {
   const [isEditingProfile, setEditingProfile] = useState(false);
   const [isAddingProperty, setAddingProperty] = useState(false);
@@ -37,6 +38,8 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
   const [size, setSize] = useState('');
   const [propertyErrorMessage, setPropertyErrorMessage] = useState("");
   //const [image, setImage] = useState('');
+
+  const [userProperties, setUserProperties] = useState([]);
 
   const navigate = useNavigate();
 
@@ -74,6 +77,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
               // setUserType(response.data.data.type);
               console.log("Registration was successful.");
               setEditingProfile(false);
+              navigate("/UserDashboard")
               // console.log(response.data["data"].type);
               // You can perform actions based on success, such as redirecting to the dashboard
               
@@ -139,6 +143,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
               console.log(response.data["data"].type);
               // You can perform actions based on success, such as redirecting to the dashboard
               setAddingProperty(false);
+              fetchUserProperties()
             } else {
               // Handle other HTTP status codes as needed
               console.error(
@@ -157,6 +162,26 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
           );
         }
       };
+
+      // Function to fetch user-specific properties
+  const fetchUserProperties = () => {
+    axios.post("http://127.0.0.1:8000/api/get_data/user_property", { user_id: userId })
+      .then((response) => {
+        if (response.status === 200) {
+          setUserProperties(response.data.data);
+        } else {
+          console.error("Failed to fetch user properties with status code:", response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("Network/server error while fetching user properties:", error);
+      });
+  };
+
+  // Fetch user properties when the component mounts
+  useEffect(() => {
+    fetchUserProperties();
+  }, []); // Empty dependency array means this effect runs once on mount
 
       return (
         <div className="bg-light p-4 mb-4 rounded-lg">
@@ -297,6 +322,18 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
               </Button>
             </Form>
           )}
+          <div className="mt-4">
+        {/* Display user-specific properties in cards */}
+        {userProperties.map(property => (
+          <Card key={property.property_id}>
+            <Card.Body>
+              <Card.Title>{property.property_name}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">{property.location}</Card.Subtitle>
+              <Card.Text>Price: {property.property_price}</Card.Text>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
         </div>
       );
     };
