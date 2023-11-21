@@ -146,6 +146,7 @@ const CreateEmployeePage = () => {
     </div>
   )
 }
+export default CreateEmployeePage;
 
 // import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
