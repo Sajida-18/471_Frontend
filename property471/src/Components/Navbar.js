@@ -21,7 +21,7 @@ function Navbar(props) {
   }, [props.userType, props.userId]);
 
   const handleLogout = () => {
-    // Perform logout actions and update the state
+   
     setIsLoggedIn(false);
     localStorage.setItem('isLoggedIn', 'false');
     console.log(props.userId)
@@ -78,7 +78,7 @@ function Navbar(props) {
   const userTypeNavItems = isLoggedIn ? navItems[userType] || navItems.default : navItems.default;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "#4ea685" }}>
     
       <div className="container-fluid">
         <Link className="navbar-brand text-white" to="/">

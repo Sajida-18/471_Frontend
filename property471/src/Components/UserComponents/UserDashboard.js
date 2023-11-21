@@ -12,8 +12,8 @@
 
 
 import React, { useState } from 'react';
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Button, Form, Row, Col } from 'react-bootstrap';
+// import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 //import {userId} from '../../App';
 
@@ -38,7 +38,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
   const [propertyErrorMessage, setPropertyErrorMessage] = useState("");
   //const [image, setImage] = useState('');
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleEditProfile = () => {
     setEditingProfile(true);
