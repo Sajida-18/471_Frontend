@@ -1,12 +1,10 @@
-// import React from 'react'
 
-// export default function UserDashboard() {
-//   return (
-//     <div>
-//       userDasboard
-//     </div>
-//   )
-// }
+
+
+
+
+
+
 
 
 
@@ -14,29 +12,27 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
-//import {userId} from '../../App';
+import axios from 'axios';
 
-const UserDashboard = ({userId, setUserId, setUserType}) => {
+const UserDashboard = ({ userId, setUserId, setUserType }) => {
   const [isEditingProfile, setEditingProfile] = useState(false);
   const [isAddingProperty, setAddingProperty] = useState(false);
 
-  //const [username, setUsername] = useState('user_1');
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [address, setaddress] = useState('');
   const [password, setpassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
-  const [editProfileErrorMessage, setEditProfileErrorMessage] = useState("");
+  const [editProfileErrorMessage, setEditProfileErrorMessage] = useState('');
 
+  const [profilePicture, setProfilePicture] = useState(null);
 
   const [propertyName, setPropertyName] = useState('');
   const [propertyPrice, setPropertyPrice] = useState('');
   const [location, setlocation] = useState('');
   const [size, setSize] = useState('');
-  const [propertyErrorMessage, setPropertyErrorMessage] = useState("");
-  //const [image, setImage] = useState('');
+  const [propertyErrorMessage, setPropertyErrorMessage] = useState('');
 
   const [userProperties, setUserProperties] = useState([]);
 
@@ -49,67 +45,48 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
   const handleSaveProfile = () => {
     if (name && password && confirmPassword && number && address && email) {
       if (password === confirmPassword) {
-        const userData = {
-          user_id: userId,
-          name: name,
-          email: email,
-          password: password,
-          phone: number,
-          address: address,
-        };
-        console.log(userData)
+        const formData = new FormData();
+        formData.append('user_id', userId);
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('phone', number);
+        formData.append('address', address);
+        formData.append('user_image', profilePicture);
+
         axios
-          .post("http://127.0.0.1:8000/api/edit_access/user_edit", userData, {
+          .post('http://127.0.0.1:8000/api/edit_access/user_edit', formData, {
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'multipart/form-data',
             },
           })
           .then((response) => {
-            //setUserType(response.data["data"].type)
-            console.log(response.data)
-            console.log(response.status)
-
+            console.log(response.data);
             if (response.status === 201) {
-              // Registration was successful
-              // setUserId(response.data.data.user_id)
-              
-              // setUserType(response.data.data.type);
-              console.log("Registration was successful.");
+              console.log('Profile update was successful.');
               setEditingProfile(false);
-              navigate("/UserDashboard")
-              // console.log(response.data["data"].type);
-              // You can perform actions based on success, such as redirecting to the dashboard
-              
+              navigate('/UserDashboard');
             } else {
-              // Handle other HTTP status codes as needed
               console.error(
-                "Registration failed with status code:",
+                'Profile update failed with status code:',
                 response.status
               );
             }
           })
           .catch((error) => {
-            // Handle any network or server errors
-            console.error("Network/server error:", error);
-          })
-          // .finally(() => {
-          //   // This block will execute whether the request is successful or fails
-          //   setpassword('');
-          //   setconfirmPassword('');
-          //   setEditingProfile(false);
-          // });
+            console.error('Network/server error:', error);
+          });
       } else {
         setEditProfileErrorMessage(
-          <div style={{ color: "red" }}>Passwords do not match</div>
+          <div style={{ color: 'red' }}>Passwords do not match</div>
         );
       }
     } else {
       setEditProfileErrorMessage(
-        <div style={{ color: "red" }}>All fields are required</div>
+        <div style={{ color: 'red' }}>All fields are required</div>
       );
     }
   };
-    
 
   const handleAddProperty = () => {
     setAddingProperty(true);
@@ -186,6 +163,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
         <div className="bg-light p-4 mb-4 rounded-lg">
           <h1 className="text">Dashboard</h1>
           <p>{userId}</p>
+          {profilePicture && <img src={profilePicture} alt="Profile" />}
           <Row className="mt-4">
             <Col>
               {!isEditingProfile && (
@@ -252,6 +230,13 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
                   onChange={(e) => setconfirmPassword(e.target.value)}
                 />
               </Form.Group>
+              <Form.Group controlId="formProfilePicture">
+            <Form.Label>Profile Picture</Form.Label>
+            <Form.Control
+              type="file"
+              onChange={(e) => setProfilePicture(e.target.files[0])}
+            />
+          </Form.Group>
               {editProfileErrorMessage && (
                 <div className="error-message">{editProfileErrorMessage}</div>
               )}
