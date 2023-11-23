@@ -35,10 +35,12 @@ const Home = () => {
       </section>
 
       {/* Featured Property Section */}
+      
       <section className="featured-property">
         <div className="container">
-          <h2 className="text-center mb-4"><b>Featured Property</b></h2>
+          <h2 className="text-center mb-4" ><b>Featured Property</b></h2>
           <div className="row">
+            
             {/* Featured Property Cards */}
             <div className="col-md-4">
               <div className="card">
@@ -105,6 +107,7 @@ const Home = () => {
       </section>
 
       {/* Contributors Section */}
+      <div style={{ backgroundColor: '#F0FFF0' }}>
       <section>
         {/* Contributor Card 1 */}
         <div className="col-md-13">
@@ -150,6 +153,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      </div>
       </div>
     </>
   );

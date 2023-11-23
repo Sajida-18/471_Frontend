@@ -35,6 +35,7 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
   const [propertyErrorMessage, setPropertyErrorMessage] = useState('');
 
   const [userProperties, setUserProperties] = useState([]);
+  const[userImagePath, setUserImagePath]=useState("")
 
   const navigate = useNavigate();
 
@@ -52,6 +53,7 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
         formData.append('password', password);
         formData.append('phone', number);
         formData.append('address', address);
+        
         formData.append('user_image', profilePicture);
 
         axios
@@ -64,6 +66,7 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
             console.log(response.data);
             if (response.status === 201) {
               console.log('Profile update was successful.');
+              setUserImagePath(response.data.data.user_image_path)
               setEditingProfile(false);
               navigate('/UserDashboard');
             } else {
@@ -160,10 +163,11 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
   }, []); // Empty dependency array means this effect runs once on mount
 
       return (
+        
         <div className="bg-light p-4 mb-4 rounded-lg">
           <h1 className="text">Dashboard</h1>
           <p>{userId}</p>
-          {profilePicture && <img src={profilePicture} alt="Profile" />}
+          { <img src={userImagePath} alt="Profile" />}
           <Row className="mt-4">
             <Col>
               {!isEditingProfile && (

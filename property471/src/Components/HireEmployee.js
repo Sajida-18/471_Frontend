@@ -1,12 +1,3 @@
-// import React from 'react'
-
-// export default function HireEmployee() {
-//   return (
-//     <div>
-//       defaut HireEmployee
-//     </div>
-//   )
-// }
 
 
 import React, { useEffect, useState } from 'react';
@@ -37,11 +28,12 @@ const HireEmployee = () => {
   };
 
   return (
+    <div className="container mt-5" style={{ backgroundColor: '#FAFAD2' }}>
     <div>
       <h1 align="center">Hire Agents & Support</h1>
 
       <div>
-        <table className="table">
+        <table className="table" >
           <thead>
             <tr align="left">
             <th scope="col"></th>
@@ -78,8 +70,11 @@ const HireEmployee = () => {
             )}
           </tbody>
         </table>
+        </div>
+        
       </div>
     </div>
+    
   );
 };
 
