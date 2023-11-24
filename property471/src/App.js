@@ -153,7 +153,7 @@ function App() {
       <Route path="/UserHireEmployee" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserHireemployee userType={userType}  userId={userId}  setUserId={setUserId}/></div>} />
       
        {/* Agent components */}
-      <Route path="/AgentDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentDashboard/></div>} />
+      <Route path="/AgentDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentDashboard userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType}/></div>} />
       <Route path="/AgentMarketplace" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentMarketplace/></div>} />
       <Route path="/AgentNotification" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentNotification/></div>} />
       <Route path="/Offers" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><Offers/></div>} />
