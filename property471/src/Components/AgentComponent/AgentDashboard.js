@@ -30,6 +30,7 @@ const AgentDashboard = ({userId, setUserId, setUserType}) => {
 
 
   const [userProperties, setUserProperties] = useState([]);
+  const [propertyStatus, setPropertyStatus] = useState({});
 
   const navigate = useNavigate();
 
@@ -121,6 +122,28 @@ const AgentDashboard = ({userId, setUserId, setUserType}) => {
   useEffect(() => {
     fetchUserProperties();
   }, []); // Empty dependency array means this effect runs once on mount
+  
+  const handleToggleMarketplace = (propertyId) => {
+    const apiUrl = propertyStatus[propertyId]
+      ? 'http://127.0.0.1:8000/api/marketplace/remove_from_marketplace'
+      : 'http://127.0.0.1:8000/api/marketplace/add_to_marketplace';
+
+    axios.post(apiUrl, { property_id: propertyId })
+      .then((response) => {
+        if (response.status === 201) {
+          // Update the property status in state
+          setPropertyStatus((prevStatus) => ({
+            ...prevStatus,
+            [propertyId]: !prevStatus[propertyId],
+          }));
+        } else {
+          console.error(`Failed to toggle marketplace status for property ${propertyId} with status code:`, response.status);
+        }
+      })
+      .catch((error) => {
+        console.error("Network/server error while toggling marketplace status:", error);
+      });
+  };
 
       return (
         <div className="bg-light p-4 mb-4 rounded-lg">
@@ -212,12 +235,18 @@ const AgentDashboard = ({userId, setUserId, setUserType}) => {
               <Card.Title>{property.property_name}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">{property.location}</Card.Subtitle>
               <Card.Text>Price: {property.property_price}</Card.Text>
+              <Button
+                variant={propertyStatus[property.property_id] ? "danger" : "primary"}
+                onClick={() => handleToggleMarketplace(property.property_id)}
+              >
+                {propertyStatus[property.property_id] ? "Remove from Marketplace" : "Add to Marketplace"}
+              </Button>
             </Card.Body>
           </Card>
         ))}
       </div>
-        </div>
-      );
-    };
-    
-    export default AgentDashboard;
+    </div>
+  );
+};
+
+export default AgentDashboard;
