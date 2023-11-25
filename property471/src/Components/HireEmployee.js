@@ -28,7 +28,7 @@ const HireEmployee = () => {
   };
 
   return (
-    <div className="container mt-5" style={{ backgroundColor: '#FAFAD2' }}>
+    // <div className="container mt-5" style={{ backgroundColor: '#FAFAD2' }}>
     <div>
       <h1 align="center">Hire Agents & Support</h1>
 
@@ -73,7 +73,7 @@ const HireEmployee = () => {
         </div>
         
       </div>
-    </div>
+    // </div>
     
   );
 };
