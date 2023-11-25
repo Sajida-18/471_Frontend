@@ -1,3 +1,5 @@
+
+
 import Home from './Components/Home';
 import MarketPlace from './Components/MarketPlace';
 import Navbar from './Components/Navbar';
@@ -57,10 +59,10 @@ function App() {
       <Route path="/UserDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><UserDashboard userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType}/></div>} />
       <Route path="/UserMarketplace" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserMarketplace/></div>} />
       <Route path="/UserNotification" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserNotification/></div>} />
-      <Route path="/UserHireEmployee" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserHireemployee/></div>} />
+      <Route path="/UserHireEmployee" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserHireemployee userType={userType}  userId={userId}  setUserId={setUserId}/></div>} />
       
        {/* Agent components */}
-      <Route path="/AgentDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentDashboard/></div>} />
+      <Route path="/AgentDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentDashboard userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType}/></div>} />
       <Route path="/AgentMarketplace" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentMarketplace/></div>} />
       <Route path="/AgentNotification" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><AgentNotification/></div>} />
       <Route path="/Offers" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId} /><Offers/></div>} />
@@ -68,7 +70,7 @@ function App() {
       
       <Route path="/MarketPlace" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><MarketPlace /></div>} />
       <Route path="/HireEmployee" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><HireEmployee/></div>} />
-      <Route path="/" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><Home /></div>} />
+      <Route path="/" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><Home heading="Welcome" /></div>} />
       <Route path="/SignupLogin" element={<SignupLogin setUserType={setUserType} userId={userId}  setUserId={setUserId}/>} />
           
    </Routes>
@@ -77,4 +79,3 @@ function App() {
   );
 }
 export default App;
-
