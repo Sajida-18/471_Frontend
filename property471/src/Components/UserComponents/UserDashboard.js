@@ -28,19 +28,26 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
 
   const [profilePicture, setProfilePicture] = useState(null);
 
-  const [propertyName, setPropertyName] = useState('');
-  const [propertyPrice, setPropertyPrice] = useState('');
-  const [location, setlocation] = useState('');
-  const [size, setSize] = useState('');
-  const [propertyErrorMessage, setPropertyErrorMessage] = useState('');
+  // const [propertyName, setPropertyName] = useState('');
+  // const [propertyPrice, setPropertyPrice] = useState('');
+  // const [location, setlocation] = useState('');
+  // const [size, setSize] = useState('');
+  // const [propertyErrorMessage, setPropertyErrorMessage] = useState('');
 
   const [userProperties, setUserProperties] = useState([]);
-  const[userImagePath, setUserImagePath]=useState("")
+  const[userImagePath, setUserImagePath]=useState(localStorage.getItem(`currentUserImagePath_${userId}`) || "");
+
+  useEffect(() => {
+    // const storageKey = `currentUserImagePath_${userId}`;
+    console.log(`Storing image path for user ${userId}:`, userImagePath);
+    localStorage.setItem(`currentUserImagePath_${userId}`, userImagePath);
+  }, [userId, userImagePath]);
 
   const navigate = useNavigate();
 
   const handleEditProfile = () => {
     setEditingProfile(true);
+    
   };
 
   const handleSaveProfile = () => {
@@ -93,54 +100,55 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
 
   const handleAddProperty = () => {
     setAddingProperty(true);
+    navigate("/PropertyCreation")
   };
 
-  const handleSaveProperty = () => {
-    if (propertyName && propertyPrice && location && size) {
-      const propertyData = {
-        user_id : userId,
-        property_name : propertyName,
-        property_price : propertyPrice,
-        property_location : location,
-        property_size : size,
-      };
+  // const handleSaveProperty = () => {
+  //   if (propertyName && propertyPrice && location && size) {
+  //     const propertyData = {
+  //       user_id : userId,
+  //       property_name : propertyName,
+  //       property_price : propertyPrice,
+  //       property_location : location,
+  //       property_size : size,
+  //     };
 
-      axios
-          .post("http://127.0.0.1:8000/api/property/create_property", propertyData, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-          .then((response) => {
-            // setUserType(response.data["data"].type)
+  //     axios
+  //         .post("http://127.0.0.1:8000/api/property/create_property", propertyData, {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //           },
+  //         })
+  //         .then((response) => {
+  //           // setUserType(response.data["data"].type)
             
-            if (response.status === 201) {
-              // Registration was successful
-              //setUserType(response.data.data.type);
-              console.log("Registration was successful.");
+  //           if (response.status === 201) {
+  //             // Registration was successful
+  //             //setUserType(response.data.data.type);
+  //             console.log("Registration was successful.");
 
-              console.log(response.data["data"].type);
-              // You can perform actions based on success, such as redirecting to the dashboard
-              setAddingProperty(false);
-              fetchUserProperties()
-            } else {
-              // Handle other HTTP status codes as needed
-              console.error(
-                "Registration failed with status code:",
-                response.status
-              );
-            }
-          })
-          .catch((error) => {
-            // Handle any network or server errors
-            console.error("Network/server error:", error);
-          });
-        } else {
-          setPropertyErrorMessage(
-            <div style={{ color: "red" }}>All fields are required</div>
-          );
-        }
-      };
+  //             console.log(response.data["data"].type);
+  //             // You can perform actions based on success, such as redirecting to the dashboard
+  //             setAddingProperty(false);
+  //             fetchUserProperties()
+  //           } else {
+  //             // Handle other HTTP status codes as needed
+  //             console.error(
+  //               "Registration failed with status code:",
+  //               response.status
+  //             );
+  //           }
+  //         })
+  //         .catch((error) => {
+  //           // Handle any network or server errors
+  //           console.error("Network/server error:", error);
+  //         });
+  //       } else {
+  //         setPropertyErrorMessage(
+  //           <div style={{ color: "red" }}>All fields are required</div>
+  //         );
+  //       }
+  //     };
 
       // Function to fetch user-specific properties
   const fetchUserProperties = () => {
@@ -259,7 +267,7 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
               </Button>
             )}
           </div>
-    
+{/*     
           {isAddingProperty && (
             <Form className="mt-4">
               <Form.Group controlId="formPropertyName">
@@ -309,7 +317,7 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
                 Save Property
               </Button>
             </Form>
-          )}
+          )} */}
           <div className="mt-4">
         {/* Display user-specific properties in cards */}
         {userProperties.map(property => (

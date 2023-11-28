@@ -30,7 +30,7 @@ const Home = () => {
         <div className="container">
           <h1>Welcome to Our Property Management Services</h1>
           <p>Discover the best properties for sale and buy off your own</p>
-          <a href="/property" className="btn btn-outline-primary btn-lg">Explore Properties</a>
+          <a href="/MarketPlace" className="btn btn-outline-primary btn-lg">Explore Properties</a>
         </div>
       </section>
 

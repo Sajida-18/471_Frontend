@@ -25,6 +25,7 @@ import Transaction from './Components/AdminComponents/Transaction';
 import Hire from './Components/AdminComponents/Hire';
 import EmployeeDetails from './Components/AdminComponents/EmployeeDetails';
 import HireEmployee from './Components/HireEmployee';
+import PropertyCreation from './Components/UserComponents/PropertyCreation';
 
 
 
@@ -57,6 +58,7 @@ function App() {
 
        {/* User componenst */}
       <Route path="/UserDashboard" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><UserDashboard userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType}/></div>} />
+      <Route path="/PropertyCreation" element={<div><Navbar userType={userType} userId={userId}  setUserId={setUserId}/><PropertyCreation userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType}/></div>} />
       <Route path="/UserMarketplace" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserMarketplace/></div>} />
       <Route path="/UserNotification" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserNotification/></div>} />
       <Route path="/UserHireEmployee" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><UserHireemployee userType={userType}  userId={userId}  setUserId={setUserId}/></div>} />
