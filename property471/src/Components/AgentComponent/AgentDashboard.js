@@ -1,12 +1,4 @@
-// import React from 'react'
 
-// export default function UserDashboard() {
-//   return (
-//     <div>
-//       userDasboard
-//     </div>
-//   )
-// }
 
 
 
@@ -14,11 +6,11 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-//import {userId} from '../../App';
+
 
 const AgentDashboard = ({userId, setUserId, setUserType}) => {
   const [isEditingProfile, setEditingProfile] = useState(false);
-  //const [username, setUsername] = useState('user_1');
+  
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
@@ -56,23 +48,19 @@ const AgentDashboard = ({userId, setUserId, setUserType}) => {
             },
           })
           .then((response) => {
-            //setUserType(response.data["data"].type)
+            
             console.log(response.data)
             console.log(response.status)
 
             if (response.status === 201) {
-              // Registration was successful
-              // setUserId(response.data.data.user_id)
               
-              // setUserType(response.data.data.type);
               console.log("Registration was successful.");
               setEditingProfile(false);
               navigate("/AgentDashboard")
-              // console.log(response.data["data"].type);
-              // You can perform actions based on success, such as redirecting to the dashboard
+             
               
             } else {
-              // Handle other HTTP status codes as needed
+             
               console.error(
                 "Registration failed with status code:",
                 response.status
@@ -80,15 +68,10 @@ const AgentDashboard = ({userId, setUserId, setUserType}) => {
             }
           })
           .catch((error) => {
-            // Handle any network or server errors
+            
             console.error("Network/server error:", error);
           })
-          // .finally(() => {
-          //   // This block will execute whether the request is successful or fails
-          //   setpassword('');
-          //   setconfirmPassword('');
-          //   setEditingProfile(false);
-          // });
+         
       } else {
         setEditProfileErrorMessage(
           <div style={{ color: "red" }}>Passwords do not match</div>
@@ -102,7 +85,7 @@ const AgentDashboard = ({userId, setUserId, setUserType}) => {
   };
     
 
-      // Function to fetch user-specific properties
+      
   const fetchUserProperties = () => {
     axios.post("http://127.0.0.1:8000/api/get_data/agent_property", { agent_id: userId })
       .then((response) => {

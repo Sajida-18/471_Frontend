@@ -30,7 +30,7 @@ const Marketplace = () => {
   }, []);
 
   const handleBuyClick = (propertyId) => {
-    // Add logic to handle the buy action for the property with the given ID
+    
     navigate("/SignupLogin")
     console.log(`Buy property with ID: ${propertyId}`);
   };
