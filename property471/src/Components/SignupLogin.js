@@ -31,7 +31,7 @@ const CustomModal = ({ isOpen, message, onClose }) => {
   );
 };
 
-function SignupLogin({ setUserType, userId,setUserId}) {
+function SignupLogin({ setUserType, userId,setUserId,setUserImagePath}) {
   const [isSignIn, setIsSignIn] = useState(true);
   const [signInUsername, setSignInUsername] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
@@ -94,8 +94,9 @@ function SignupLogin({ setUserType, userId,setUserId}) {
 
         // Set the userId state
 
-        const { user_id } = response.data.data;
+        const { user_id ,user_image_path} = response.data.data;
         setUserId(user_id);
+        setUserImagePath(user_image_path)
         //console.log(userId);
         setUserType(response.data.data.type);
 

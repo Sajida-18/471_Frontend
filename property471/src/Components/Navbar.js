@@ -31,6 +31,9 @@ function Navbar(props) {
       .then((response) => {
         // Handle the response as needed
         console.log('Logout successful.');
+        props.setUserType('');
+        props.setUserId('');
+        props.setUserImagePath('');
         navigate("/");
       })
       .catch((error) => {
