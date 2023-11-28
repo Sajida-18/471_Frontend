@@ -1,20 +1,10 @@
 
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const UserDashboard = ({ userId, setUserId, setUserType }) => {
+const UserDashboard = ({ userId, setUserId, setUserType ,userImagePath}) => {
   const [isEditingProfile, setEditingProfile] = useState(false);
   const [isAddingProperty, setAddingProperty] = useState(false);
 
@@ -35,72 +25,73 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
   // const [propertyErrorMessage, setPropertyErrorMessage] = useState('');
 
   const [userProperties, setUserProperties] = useState([]);
-  const[userImagePath, setUserImagePath]=useState(localStorage.getItem(`currentUserImagePath_${userId}`) || "");
+//  const[userImagePath, setUserImagePath]=useState(localStorage.getItem(`currentUserImagePath_${userId}`) || "");
 
-  useEffect(() => {
-    // const storageKey = `currentUserImagePath_${userId}`;
-    console.log(`Storing image path for user ${userId}:`, userImagePath);
-    localStorage.setItem(`currentUserImagePath_${userId}`, userImagePath);
-  }, [userId, userImagePath]);
+  // useEffect(() => {
+  //   // const storageKey = `currentUserImagePath_${userId}`;
+  //   console.log(`Storing image path for user ${userId}:`, userImagePath);
+  //   localStorage.setItem(`currentUserImagePath_${userId}`, userImagePath);
+  // }, [userId, userImagePath]);
 
   const navigate = useNavigate();
 
   const handleEditProfile = () => {
     setEditingProfile(true);
+     navigate("/UserEditProfile")
     
   };
 
-  const handleSaveProfile = () => {
-    if (name && password && confirmPassword && number && address && email) {
-      if (password === confirmPassword) {
-        const formData = new FormData();
-        formData.append('user_id', userId);
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('password', password);
-        formData.append('phone', number);
-        formData.append('address', address);
+  // const handleSaveProfile = () => {
+  //   if (name && password && confirmPassword && number && address && email) {
+  //     if (password === confirmPassword) {
+  //       const formData = new FormData();
+  //       formData.append('user_id', userId);
+  //       formData.append('name', name);
+  //       formData.append('email', email);
+  //       formData.append('password', password);
+  //       formData.append('phone', number);
+  //       formData.append('address', address);
         
-        formData.append('user_image', profilePicture);
+  //       formData.append('user_image', profilePicture);
 
-        axios
-          .post('http://127.0.0.1:8000/api/edit_access/user_edit', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          })
-          .then((response) => {
-            console.log(response.data);
-            if (response.status === 201) {
-              console.log('Profile update was successful.');
-              setUserImagePath(response.data.data.user_image_path)
-              setEditingProfile(false);
-              navigate('/UserDashboard');
-            } else {
-              console.error(
-                'Profile update failed with status code:',
-                response.status
-              );
-            }
-          })
-          .catch((error) => {
-            console.error('Network/server error:', error);
-          });
-      } else {
-        setEditProfileErrorMessage(
-          <div style={{ color: 'red' }}>Passwords do not match</div>
-        );
-      }
-    } else {
-      setEditProfileErrorMessage(
-        <div style={{ color: 'red' }}>All fields are required</div>
-      );
-    }
-  };
+  //       axios
+  //         .post('http://127.0.0.1:8000/api/edit_access/user_edit', formData, {
+  //           headers: {
+  //             'Content-Type': 'multipart/form-data',
+  //           },
+  //         })
+  //         .then((response) => {
+  //           console.log(response.data);
+  //           if (response.status === 201) {
+  //             console.log('Profile update was successful.');
+  //             setUserImagePath(response.data.data.user_image_path)
+  //             setEditingProfile(false);
+  //             navigate('/UserDashboard');
+  //           } else {
+  //             console.error(
+  //               'Profile update failed with status code:',
+  //               response.status
+  //             );
+  //           }
+  //         })
+  //         .catch((error) => {
+  //           console.error('Network/server error:', error);
+  //         });
+  //     } else {
+  //       setEditProfileErrorMessage(
+  //         <div style={{ color: 'red' }}>Passwords do not match</div>
+  //       );
+  //     }
+  //   } else {
+  //     setEditProfileErrorMessage(
+  //       <div style={{ color: 'red' }}>All fields are required</div>
+  //     );
+  //   }
+  // };
 
   const handleAddProperty = () => {
     setAddingProperty(true);
-    navigate("/PropertyCreation")
+    // navigate("/PropertyCreation")
   };
 
   // const handleSaveProperty = () => {
@@ -186,7 +177,7 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
             </Col>
           </Row>
     
-          {isEditingProfile && (
+          {/* {isEditingProfile && (
             <Form>
               <Form.Group controlId="formName">
                 <Form.Label>Name</Form.Label>
@@ -258,15 +249,15 @@ const UserDashboard = ({ userId, setUserId, setUserType }) => {
               </Button>
             </Form>
           )}
-    
+     */}
           <div className="mt-4">
             <h2>My Properties</h2>
             {!isAddingProperty && (
-              <Button variant="primary" className="w-100" onClick={handleAddProperty}>
+              <Button variant="primary"  onClick={handleAddProperty}>
                 Add Property
               </Button>
             )}
-          </div>
+          </div> 
 {/*     
           {isAddingProperty && (
             <Form className="mt-4">
