@@ -22,64 +22,61 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
 
  
   const navigate = useNavigate();
-
-  const handleSaveProfile = async() => {
-    if (name && password && confirmPassword && number && address && email) {
-      if (password === confirmPassword) {
-        const formData = new FormData();
-        formData.append('user_id', userId);
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('password', password);
-        formData.append('phone', number);
-        formData.append('address', address);
-        formData.append('user_image', profilePicture);
-
-     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/edit_access/user_edit', formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        })
-         
-            console.log(response.data)
-            if (response.status === 201) {
-              
-              console.log('Profile update was successful.');
-              const response2 =await axios.post("http://127.0.0.1:8000/api/get_data/single_user",{user_id: userId})
-            
-         
+  const handleSaveProfile = async () => {
+    try {
+      if (name && password && confirmPassword && number && address && email) {
+        if (password === confirmPassword) {
+          const formData = new FormData();
+          formData.append('user_id', userId);
+          formData.append('name', name);
+          formData.append('email', email);
+          formData.append('password', password);
+          formData.append('phone', number);
+          formData.append('address', address);
+          formData.append('user_image', profilePicture);
+  
+          const response = await axios.post(
+            'http://127.0.0.1:8000/api/edit_access/user_edit',
+            formData,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            }
+          );
+  
+          console.log(response.data);
+          if (response.status === 201) {
+            console.log('Profile update was successful.');
+  
+            const response2 = await axios.post(
+              'http://127.0.0.1:8000/api/get_data/single_user',
+              { user_id: userId }
+            );
+  
             setUserImagePath(response2.data.data.user_image_path);
-            navigate("/UserDashboard")
-              // setUserImagePath(response.data.data.user_image_path);
-              // console.log(userImagePath)
-              // setEditingProfile(false);
-             
-            } else {
-              console.error('Profile update failed with status code:', response.status);
-            }
-          
-         
-          
+            navigate('/UserDashboard');
+          } else {
+            console.error(
+              'Profile update failed with status code:',
+              response.status
+            );
           }
-            catch(error){
-              console.error('Network/server error:', error);
-            }finally{
-              navigate("/UserDashboard");}
-            }
-          
-          
+        } else {
+          setEditProfileErrorMessage(
+            <div style={{ color: 'red' }}>Passwords do not match</div>
+          );
+        }
       } else {
         setEditProfileErrorMessage(
-          <div style={{ color: 'red' }}>Passwords do not match</div>
+          <div style={{ color: 'red' }}>All fields are required</div>
         );
       }
-    //  else {
-    //   setEditProfileErrorMessage(
-    //     <div style={{ color: 'red' }}>All fields are required</div>
-    //   );
-    // }
+    } catch (error) {
+      console.error('Network/server error:', error);
+    }
   };
+  
 
   return (
     <div className="bg-light p-4 mb-4 rounded-lg">

@@ -34,7 +34,7 @@ const UserDashboard = ({ userId, setUserId, setUserType ,userImagePath}) => {
   // }, [userId, userImagePath]);
 
   const navigate = useNavigate();
-
+  console.log(userImagePath)
   const handleEditProfile = () => {
     setEditingProfile(true);
      navigate("/UserEditProfile")
@@ -166,7 +166,7 @@ const UserDashboard = ({ userId, setUserId, setUserType ,userImagePath}) => {
         <div className="bg-light p-4 mb-4 rounded-lg">
           <h1 className="text">Dashboard</h1>
           <p>{userId}</p>
-          { <img src={userImagePath} alt="Profile" />}
+          <img src={userImagePath} alt="Profile" />
           <Row className="mt-4">
             <Col>
               {!isEditingProfile && (
