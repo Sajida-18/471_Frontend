@@ -63,6 +63,9 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
             } else if (userType === 'agent') {
               console.log(response2.data.data.user_image_path)
               navigate('/AgentDashboard');
+            } else if (userType === 'admin') {
+              console.log(response2.data.data.user_image_path)
+              navigate('/AdminDashboard');
             } 
             
           } else {

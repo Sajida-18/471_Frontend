@@ -10,15 +10,7 @@ import axios from "axios";
 
 const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
   const [isEditingProfile, setEditingProfile] = useState(false);
-  
-  // const [name, setName] = useState('');
-  // const [number, setNumber] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [address, setaddress] = useState('');
-  // const [password, setpassword] = useState('');
-  // const [confirmPassword, setconfirmPassword] = useState('');
-  // const [editProfileErrorMessage, setEditProfileErrorMessage] = useState("");
-
+ 
   const [userData, setUserData] = useState({});
   const [userProperties, setUserProperties] = useState([]);
   const [propertyStatus, setPropertyStatus] = useState({});
@@ -30,60 +22,7 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
     navigate("/UserEditProfile");
   };
 
-  // const handleSaveProfile = () => {
-  //   if (name && password && confirmPassword && number && address && email) {
-  //     if (password === confirmPassword) {
-  //       const userData = {
-  //         user_id: userId,
-  //         name: name,
-  //         email: email,
-  //         password: password,
-  //         phone: number,
-  //         address: address,
-  //       };
-  //       console.log(userData)
-  //       axios
-  //         .post("http://127.0.0.1:8000/api/edit_access/user_edit", userData, {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         })
-  //         .then((response) => {
-            
-  //           console.log(response.data)
-  //           console.log(response.status)
-
-  //           if (response.status === 201) {
-              
-  //             console.log("Registration was successful.");
-  //             setEditingProfile(false);
-  //             navigate("/AgentDashboard")
-             
-              
-  //           } else {
-             
-  //             console.error(
-  //               "Registration failed with status code:",
-  //               response.status
-  //             );
-  //           }
-  //         })
-  //         .catch((error) => {
-            
-  //           console.error("Network/server error:", error);
-  //         })
-         
-  //     } else {
-  //       setEditProfileErrorMessage(
-  //         <div style={{ color: "red" }}>Passwords do not match</div>
-  //       );
-  //     }
-  //   } else {
-  //     setEditProfileErrorMessage(
-  //       <div style={{ color: "red" }}>All fields are required</div>
-  //     );
-  //   }
-  // };
+  
     
   const fetchUserData = () => {
     axios.post("http://127.0.0.1:8000/api/get_data/single_user", { user_id: userId })
@@ -143,8 +82,8 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
 
       return (
         
-        <div className="bg-light p-4 mb-4 rounded-lg" >
-          <h1 className="text"> Agent Dashboard</h1>
+        <div className=" p-4 mb-4 rounded-lg"  style={{backgroundColor: "#e6fff7"}}>
+          {/* <h1 className="text"> Agent Dashboard</h1> */}
           <div className="mt-4 ">
         {/* Display individual user information */}
         <div className="col-lg-4" >
@@ -171,8 +110,9 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
         <div className="mt-4">
         {/* Display user-specific properties in cards */}
         {userProperties.map(property => (
-          <div className="col-md-4 mb-4 " key={property.property_id}>
-            <div className="card" style={{ borderRadius: '15px', width: '900px', backgroundColor: '#FFFFFF' }}>
+          <div className="col-sm-12 " key={property.property_id}>
+            <div className=' py-4 px-1 h-10'>
+            <div className="card" style={{ borderRadius: '15px', width: 'flex', backgroundColor: '#FFFFFF' }}>
               <div className="card-body">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
@@ -204,7 +144,16 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
                       <p className="small text-muted mb-1">Size</p>
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
+                      <div className="px-5">
+                      <p className="small text-muted mb-1">Market status</p>
+                      <p className="mb-0 ">{property.market_status}</p>
+                      </div>
+                      <div className="px-5">
+                      <p className="small text-muted mb-1">owner_id</p>
+                      <p className="mb-0 ">{property.user_id}</p>
+                      </div>
                     </div>
+                    
                     <div className="d-flex pt-1">
                     <Button className=" me-1 flex-grow-1"
                           variant={propertyStatus[property.property_id] ? "outline-danger" : "outline-success"}
@@ -215,6 +164,7 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
                     </div>
                   </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>

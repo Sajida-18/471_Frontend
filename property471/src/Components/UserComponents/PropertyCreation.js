@@ -22,7 +22,7 @@ const PropertyCreation = ({ userId }) => {
         propertyData.append('property_price', propertyPrice);
         propertyData.append('property_location', location);
         propertyData.append('property_size', size);
-        propertyData.append('property_image', propertyImage); // Append the image
+        // propertyData.append('property_image', propertyImage); // Append the image
   
         axios
           .post("http://127.0.0.1:8000/api/property/create_property", propertyData, {
@@ -108,7 +108,7 @@ const PropertyCreation = ({ userId }) => {
             required
           />
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
             <label htmlFor="propertyImage" className="form-label">
               Property Image
             </label>
@@ -119,7 +119,7 @@ const PropertyCreation = ({ userId }) => {
               onChange={(e) => setPropertyImage(e.target.files[0])}
               
             />
-          </div>
+          </div> */}
     </form>
 
         

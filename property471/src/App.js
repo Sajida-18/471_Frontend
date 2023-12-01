@@ -61,10 +61,10 @@ function App() {
       
       <Routes>
         {/* admin componests */}
-      <Route path="/AdminDashboard" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><AdminDashboard/></div>} />
-      <Route path="/Transaction" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><Transaction/></div>} />
-      <Route path="/Hire" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><Hire/></div>} />
-      <Route path="/EmployeeDetails" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId}/><EmployeeDetails /></div>} />
+      <Route path="/AdminDashboard" element={<div><Navbar  userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  userId={userId}  setUserId={setUserId}/><AdminDashboard userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType} userImagePath={userImagePath} setUserImagePath={setUserImagePath}/></div>} />
+      <Route path="/Transaction" element={<div><Navbar  userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  userId={userId}  setUserId={setUserId}/><Transaction/></div>} />
+      <Route path="/Hire" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  userId={userId}  setUserId={setUserId}/><Hire/></div>} />
+      <Route path="/EmployeeDetails" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  userId={userId}  setUserId={setUserId}/><EmployeeDetails /></div>} />
 
        {/* User componenst */}
       <Route path="/UserDashboard" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  setUserType={setUserType} userId={userId}  setUserId={setUserId}/><UserDashboard userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType} userImagePath={userImagePath} setUserImagePath={setUserImagePath}/></div>} />

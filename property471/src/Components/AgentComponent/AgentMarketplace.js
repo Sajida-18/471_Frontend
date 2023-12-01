@@ -23,13 +23,14 @@ const Marketplace = () => {
    
    <div className="mt-4">
         {Array.isArray(userProperties) &&  userProperties.map(property => (
-          <div className="col-md-4 mb-4 " key={property.property_id}>
-            <div className="card" style={{ borderRadius: '15px', width: '1200px', backgroundColor: '#FFFFFF' }}>
-              <div className="card-body">
+          <div className="col-sm-12" key={property.property_id}>
+            <div className=' py-4 px-1 h-10'>
+            <div className="card" style={{ borderRadius: '15px', width: 'flex', backgroundColor: '#FFFFFF' }}>
+              <div className="card-body p-4">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
                     <img
-                      src={property.imagePath || 'https://www.indiashotels.com/webadmin/thumbs/863706-622c611d19cc5ffd9618c30d_saptha%20gallery%20images%203.jpg'}
+                      src={property.imagePath || 'https://media.discordapp.net/attachments/1165504181126320249/1180218866731864217/property_stock.png?ex=657c9f79&is=656a2a79&hm=3c307248e3fcf4571245743e3ee2a17f0f5d1129fede908d289cd04105fb45ab&=&format=webp&quality=lossless&width=468&height=468'}
                       alt="Property"
                       className="img-fluid"
                       style={{ width: '180px', borderRadius: '10px' }}
@@ -56,19 +57,44 @@ const Marketplace = () => {
                       <p className="small text-muted mb-1">Size</p>
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
+                      <div className="px-5">
+                      <p className="small text-muted mb-1">Hire Agent</p>
+                      {property.agent_id ? (
+                        <p className="mb-0 ">{property.agent_id}</p>
+                      ) : (
+                        <p className="mb-0">No Agent Hired</p>
+                      )}
+                    </div>
+                    <div className="px-5">
+                      <p className="small text-muted mb-1">Hire Support</p>
+                      {property.support_id ? (
+                        <p className="mb-0 ">{property.support_id}</p>
+                      ) : (
+                        <p className="mb-0">No Support Hired</p>
+                      )}
+                    </div>
+                    
+                      {/* <div className="d-flex pt-1" align="right">
+                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1" >
+                        Remove Property
+                      </button>
+                    </div> */}
+                      
                     </div>
                     {/* <div className="d-flex pt-1">
-                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  >
-                      Buy Property
+                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  onClick={handleBuyClick}>
+                        Buy property
                       </button>
                     </div> */}
                   </div>
                 </div>
-              </div>
+                </div>
+                </div>
             </div>
           </div>
         ))}
       </div>
+
     </>
   );
 };

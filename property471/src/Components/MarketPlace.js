@@ -27,12 +27,12 @@ const Marketplace = () => {
 
   return (
     <>
-    {/* <h2 >Properties</h2> */}
-      <div className="mt-4 " >
+   
+   <div className="mt-4">
         {Array.isArray(userProperties) &&  userProperties.map(property => (
           <div className="col-sm-12" key={property.property_id}>
             <div className=' py-4 px-1 h-10'>
-            <div className="card" style={{ borderRadius: '15px', width: '900px', backgroundColor: '#FFFFFF' }}>
+            <div className="card" style={{ borderRadius: '15px', width: 'flex', backgroundColor: '#FFFFFF' }}>
               <div className="card-body p-4">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
@@ -64,6 +64,23 @@ const Marketplace = () => {
                       <p className="small text-muted mb-1">Size</p>
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
+                      <div className="px-5">
+                      <p className="small text-muted mb-1">Hired Agent</p>
+                      {property.agent_id ? (
+                        <p className="mb-0 ">{property.agent_id}</p>
+                      ) : (
+                        <p className="mb-0">No Agent Hired</p>
+                      )}
+                    </div>
+                    <div className="px-5">
+                      <p className="small text-muted mb-1">Hired Support</p>
+                      {property.support_id ? (
+                        <p className="mb-0 ">{property.support_id}</p>
+                      ) : (
+                        <p className="mb-0">No Support Hired</p>
+                      )}
+                    </div>
+                    
                       {/* <div className="d-flex pt-1" align="right">
                       <button type="button" className="btn btn-outline-success me-1 flex-grow-1" >
                         Remove Property
