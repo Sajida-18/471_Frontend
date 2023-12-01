@@ -27,6 +27,7 @@ import EmployeeDetails from './Components/AdminComponents/EmployeeDetails';
 import HireEmployee from './Components/HireEmployee';
 import PropertyCreation from './Components/UserComponents/PropertyCreation';
 import UserEditProfile from './Components/UserComponents/UserEditProfile';
+// import AgentEditProfile from './Components/AgentComponent/AgentEditProfile';
 
 
 
@@ -74,7 +75,8 @@ function App() {
       <Route path="/UserHireEmployee" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  setUserType={setUserType} userId={userId}  setUserId={setUserId}/><UserHireemployee userType={userType}  userId={userId}  setUserId={setUserId}/></div>} />
       
        {/* Agent components */}
-      <Route path="/AgentDashboard" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType} setUserType={setUserType} userId={userId}  setUserId={setUserId} /><AgentDashboard userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType}/></div>} />
+      <Route path="/AgentDashboard" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType} setUserType={setUserType} userId={userId}  setUserId={setUserId} /><AgentDashboard userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType}/></div>} />
+      {/* <Route path="/AgentEditProfile" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType} setUserType={setUserType} userId={userId}  setUserId={setUserId}/><AgentEditProfile userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType} userImagePath={userImagePath} setUserImagePath={setUserImagePath}/></div>} /> */}
       <Route path="/AgentMarketplace" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType} setUserType={setUserType} userId={userId}  setUserId={setUserId} /><AgentMarketplace/></div>} />
       <Route path="/AgentNotification" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType} setUserType={setUserType} userId={userId}  setUserId={setUserId} /><AgentNotification/></div>} />
       <Route path="/Offers" element={<div><Navbar userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType} setUserType={setUserType} userId={userId}  setUserId={setUserId} /><Offers/></div>} />

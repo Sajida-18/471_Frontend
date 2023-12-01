@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // import UserDashboard from './UserDashboard';
 
 const UserEditProfile = ({ userId, setUserImagePath}) => {
-  const [isEditingProfile, setEditingProfile] = useState(false);
+  // const [isEditingProfile, setEditingProfile] = useState(false);
   
 
   const [name, setName] = useState('');
@@ -55,7 +55,16 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
             );
   
             setUserImagePath(response2.data.data.user_image_path);
-            navigate('/UserDashboard');
+            const userType = response2.data.data.type;
+
+            // Conditionally navigate based on user type
+            if (userType === 'user') {
+              navigate('/UserDashboard');
+            } else if (userType === 'agent') {
+              console.log(response2.data.data.user_image_path)
+              navigate('/AgentDashboard');
+            } 
+            
           } else {
             console.error(
               'Profile update failed with status code:',
@@ -121,7 +130,6 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
         type="text"
         className="form-control"
         id="email"
-        placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -136,7 +144,6 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
         type="text"
         className="form-control"
         id="address"
-        placeholder="Address"
         value={address}
         onChange={(e) => setAddress(e.target.value)}
       />
@@ -151,7 +158,6 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
         type="text"
         className="form-control"
         id="password"
-        placeholder="Enter Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
@@ -165,7 +171,6 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
         type="text"
         id="confirmPassword"
         className="form-control"
-        placeholder="Confirm Password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
