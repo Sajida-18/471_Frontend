@@ -50,9 +50,11 @@ const CreateEmployeePage = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div  style={{ backgroundColor: '#F0FFF0' }}>
+    <div className="container ">
       <h1 className="mb-4">Create Employee Account</h1>
-
+      {successMessage && <p className="text-success mt-3">{successMessage}</p>}
+      {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}
       <form>
         <div className="mb-3">
           <label htmlFor="employeeName" className="form-label">
@@ -134,17 +136,16 @@ const CreateEmployeePage = () => {
 
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-success"
           onClick={handleCreateEmployee}
         >
           Create Employee
         </button>
       </form>
 
-      {successMessage && <p className="text-success mt-3">{successMessage}</p>}
-      {errorMessage && <p className="text-danger mt-3">{errorMessage}</p>}
+      
     </div>
-  );
-};
-
+    </div>
+  )
+}
 export default CreateEmployeePage;

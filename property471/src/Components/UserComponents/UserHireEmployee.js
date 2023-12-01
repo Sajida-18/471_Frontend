@@ -74,7 +74,7 @@ const UserHireEmployee = ({ userId, setUserId }) => {
       };
   
       if (selectedEmployeeType === 'agent') {
-        console.log(selectedEmployeeId.type)
+        // console.log(selectedEmployeeId.type)
         requestData.agent_id = selectedEmployeeId;
       } else {
         requestData.support_id = selectedEmployeeId;
@@ -174,4 +174,3 @@ const UserHireEmployee = ({ userId, setUserId }) => {
 };
 
 export default UserHireEmployee;
-
