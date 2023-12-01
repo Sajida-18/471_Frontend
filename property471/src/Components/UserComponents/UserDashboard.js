@@ -327,7 +327,7 @@ const UserDashboard = ({userId, setUserId, setUserType}) => {
           <Card key={property.property_id}>
             <Card.Body>
               <Card.Title>{property.property_name}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">{property.location}</Card.Subtitle>
+              <Card.Subtitle>{property.property_id}</Card.Subtitle>
               <Card.Text>Price: {property.property_price}</Card.Text>
             </Card.Body>
           </Card>
