@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -57,12 +57,35 @@ const UserDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
   }, [userId]); // Fetch user data and properties when the userId changes
 
   return (
-    <div className="bg-light p-4 mb-4 rounded-lg">
-      <h1 className="text">Dashboard</h1>
+    // <div className="bg-light p-4 mb-4 rounded-lg">
+    //   <h1 className="text">Dashboard</h1>
+    //   <div className="mt-4 ">
+    //     {/* Display individual user information */}
+    //     <div className="col-lg-4" >
+    //       <div className="card mb-4" style={{backgroundColor:"#FFFFFF"}}>
+    //         <div className="card-body text-center">
+    //           <img src={userImagePath} alt="avatar"
+    //             className="rounded-circle img-fluid" style={{ width: '150px' }} />
+    //           <h5 className="my-3">{userData.name}</h5>
+    //           <p className="text-muted mb-1">{userData.user_id}</p>
+    //           <p className="text-muted mb-4">{userData.address}</p>
+    //           <div className="d-flex justify-content-center mb-2">
+    //             {/* <button type="button" className="btn btn-primary">Follow</button> */}
+    //             <button type="button" className="btn btn-outline-success ms-1" onClick={handleEditProfile}>Edit Profile</button>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+      <div style={{backgroundColor:"black"}}>
+      
+      {/* <div className="mt-4"  > */}
+        <div className=" p-4 mb-4 rounded-lg" style={{backgroundColor:"#d9f2e4"}}>
+      {/* <h className="text">Dashboard</h> */}
       <div className="mt-4 ">
         {/* Display individual user information */}
         <div className="col-lg-4" >
-          <div className="card mb-4" style={{backgroundColor:"#FFFFFF"}}>
+          <div className="card mb-4" style={{backgroundColor:"#FFFFFF" ,borderRadius: '15px' }}>
             <div className="card-body text-center">
               <img src={userImagePath} alt="avatar"
                 className="rounded-circle img-fluid" style={{ width: '150px' }} />
@@ -78,21 +101,12 @@ const UserDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
         </div>
       </div>
 
-      <div className="mt-4">
-        <h2>My Properties</h2>
-        {!isAddingProperty && (
-          <Button variant="success" onClick={handleAddProperty}>
-            Add Property
-          </Button>
-        )}
-      </div>
-
-      <div className="mt-4">
         {/* Display user-specific properties in cards */}
         {userProperties.map(property => (
-          <div className="col-md-4 mb-4 " key={property.property_id}>
-            <div className="card" style={{ borderRadius: '15px', width: '1200px', backgroundColor: '#FFFFFF' }}>
-              <div className="card-body">
+          <div className="col-sm-12" key={property.property_id}>
+            <div className=' py-4 px-1 h-10'>
+            <div className="card" style={{ borderRadius: '15px', width: '900px', backgroundColor: '#FFFFFF' }}>
+              <div className="card-body p-4">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
                     <img
@@ -123,6 +137,12 @@ const UserDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
                       <p className="small text-muted mb-1">Size</p>
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
+                      {/* <div className="d-flex pt-1" align="right">
+                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1" >
+                        Remove Property
+                      </button>
+                    </div> */}
+                      
                     </div>
                     <div className="d-flex pt-1">
                       <button type="button" className="btn btn-outline-success me-1 flex-grow-1" >
@@ -131,14 +151,25 @@ const UserDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+                </div>
+                </div>
             </div>
           </div>
         ))}
+        <div className="mt-4" >
+        {!isAddingProperty && (
+          <Button variant="success" onClick={handleAddProperty}>
+            Add Property
+          </Button>
+        )}
       </div>
-
+      </div>
+      
      
     </div>
+    // </div>
+    
+ 
   );
 };
 

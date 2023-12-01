@@ -1,15 +1,5 @@
-// import React from 'react'
 
-// export default function MarketPlace() {
-//   return (
-//     <div>
-//       Marketplace
-//     </div>
-//   )
-// }
 import React, { useState, useEffect } from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,12 +27,13 @@ const Marketplace = () => {
 
   return (
     <>
-    <h2 align="center">Properties</h2>
-      <div className="mt-4" >
+    {/* <h2 >Properties</h2> */}
+      <div className="mt-4 " >
         {Array.isArray(userProperties) &&  userProperties.map(property => (
-          <div className="col-md-4 mb-4 " key={property.property_id}>
-            <div className="card "  style={{ borderRadius: '15px', width: '1200px', backgroundColor: '#FFFFFF' }}>
-              <div className="card-body">
+          <div className="col-sm-12" key={property.property_id}>
+            <div className=' py-4 px-1 h-10'>
+            <div className="card" style={{ borderRadius: '15px', width: '900px', backgroundColor: '#FFFFFF' }}>
+              <div className="card-body p-4">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
                     <img
@@ -73,15 +64,22 @@ const Marketplace = () => {
                       <p className="small text-muted mb-1">Size</p>
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
+                      {/* <div className="d-flex pt-1" align="right">
+                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1" >
+                        Remove Property
+                      </button>
+                    </div> */}
+                      
                     </div>
                     <div className="d-flex pt-1">
-                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1" onClick={() => handleBuyClick(property.property_id)} >
-                      Buy Property
+                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  onClick={handleBuyClick}>
+                        Buy property
                       </button>
                     </div>
                   </div>
                 </div>
-              </div>
+                </div>
+                </div>
             </div>
           </div>
         ))}

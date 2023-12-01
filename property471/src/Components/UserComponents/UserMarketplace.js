@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
 const UserMarketplace = () => {
@@ -57,11 +56,11 @@ const UserMarketplace = () => {
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
                     </div>
-                    {/* <div className="d-flex pt-1">
+                    <div className="d-flex pt-1">
                       <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  >
                       Buy Property
                       </button>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>

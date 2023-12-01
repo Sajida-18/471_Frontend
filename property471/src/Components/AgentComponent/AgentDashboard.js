@@ -3,7 +3,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Form, Row, Col } from 'react-bootstrap';
+import {  Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
@@ -142,12 +142,13 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
   };
 
       return (
-        <div className="bg-light p-4 mb-4 rounded-lg">
+        
+        <div className="bg-light p-4 mb-4 rounded-lg" >
           <h1 className="text"> Agent Dashboard</h1>
           <div className="mt-4 ">
         {/* Display individual user information */}
         <div className="col-lg-4" >
-          <div className="card mb-4" style={{backgroundColor:"#FFFFFF"}}>
+          <div className="card mb-4" style={{backgroundColor:"#FFFFFF" ,borderRadius: '15px'}}>
             <div className="card-body text-center">
               <img src={userImagePath} alt="avatar"
                 className="rounded-circle img-fluid" style={{ width: '150px' }} />
@@ -156,88 +157,13 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
               <p className="text-muted mb-4">{userData.address}</p>
               <div className="d-flex justify-content-center mb-2">
                 {/* <button type="button" className="btn btn-primary">Follow</button> */}
-                <button type="button" className="btn btn-success ms-1"  onClick={handleEditProfile}>Edit Profile</button>
+                <button type="button" className="btn btn-outline-success ms-1"  onClick={handleEditProfile}>Edit Profile</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-          {/* <Row className="mt-4">
-            <Col>
-              {!isEditingProfile && (
-                <Button variant="primary" className="w-90" onClick={handleEditProfile}>
-                  Edit Profile
-                </Button>
-              )}
-            </Col>
-          </Row>
-     */}
-          {/* {isEditingProfile && (
-            <Form>
-              <Form.Group controlId="formName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="formNumber">
-                <Form.Label>Phone</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your phone number"
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="formEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="formAddress">
-                <Form.Label>Address</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Address"
-                  value={address}
-                  onChange={(e) => setaddress(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="formPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Password"
-                  value={password}
-                  onChange={(e) => setpassword(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group controlId="formconfirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setconfirmPassword(e.target.value)}
-                />
-              </Form.Group>
-              {editProfileErrorMessage && (
-                <div className="error-message">{editProfileErrorMessage}</div>
-              )}
-              
-              <Button variant="success" onClick={handleSaveProfile} className="mt-3">
-                Save Profile
-              </Button>
-            </Form>
-          )} */}
-    
+          
           <div className="mt-4">
             <h2>Properties</h2>
             
@@ -246,7 +172,7 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
         {/* Display user-specific properties in cards */}
         {userProperties.map(property => (
           <div className="col-md-4 mb-4 " key={property.property_id}>
-            <div className="card" style={{ borderRadius: '15px', width: '1200px', backgroundColor: '#FFFFFF' }}>
+            <div className="card" style={{ borderRadius: '15px', width: '900px', backgroundColor: '#FFFFFF' }}>
               <div className="card-body">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
@@ -281,7 +207,7 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
                     </div>
                     <div className="d-flex pt-1">
                     <Button className=" me-1 flex-grow-1"
-                          variant={propertyStatus[property.property_id] ? "danger" : "success"}
+                          variant={propertyStatus[property.property_id] ? "outline-danger" : "outline-success"}
                           onClick={() => handleToggleMarketplace(property.property_id)}
                         >
                           {propertyStatus[property.property_id] ? "Remove from Marketplace" : "Add to Marketplace"}
@@ -296,6 +222,7 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
       </div>
       </div>
     </div>
+    
   );
 };
 
