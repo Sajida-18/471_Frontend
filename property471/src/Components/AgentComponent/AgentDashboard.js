@@ -1,7 +1,5 @@
 
 
-
-
 import React, { useState, useEffect } from 'react';
 import {  Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -11,14 +9,6 @@ import axios from "axios";
 const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
   const [isEditingProfile, setEditingProfile] = useState(false);
   
-  // const [name, setName] = useState('');
-  // const [number, setNumber] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [address, setaddress] = useState('');
-  // const [password, setpassword] = useState('');
-  // const [confirmPassword, setconfirmPassword] = useState('');
-  // const [editProfileErrorMessage, setEditProfileErrorMessage] = useState("");
-
   const [userData, setUserData] = useState({});
   const [userProperties, setUserProperties] = useState([]);
   const [propertyStatus, setPropertyStatus] = useState({});
@@ -30,60 +20,7 @@ const AgentDashboard = ({userId, setUserId, setUserType, userImagePath}) => {
     navigate("/UserEditProfile");
   };
 
-  // const handleSaveProfile = () => {
-  //   if (name && password && confirmPassword && number && address && email) {
-  //     if (password === confirmPassword) {
-  //       const userData = {
-  //         user_id: userId,
-  //         name: name,
-  //         email: email,
-  //         password: password,
-  //         phone: number,
-  //         address: address,
-  //       };
-  //       console.log(userData)
-  //       axios
-  //         .post("http://127.0.0.1:8000/api/edit_access/user_edit", userData, {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //         })
-  //         .then((response) => {
-            
-  //           console.log(response.data)
-  //           console.log(response.status)
 
-  //           if (response.status === 201) {
-              
-  //             console.log("Registration was successful.");
-  //             setEditingProfile(false);
-  //             navigate("/AgentDashboard")
-             
-              
-  //           } else {
-             
-  //             console.error(
-  //               "Registration failed with status code:",
-  //               response.status
-  //             );
-  //           }
-  //         })
-  //         .catch((error) => {
-            
-  //           console.error("Network/server error:", error);
-  //         })
-         
-  //     } else {
-  //       setEditProfileErrorMessage(
-  //         <div style={{ color: "red" }}>Passwords do not match</div>
-  //       );
-  //     }
-  //   } else {
-  //     setEditProfileErrorMessage(
-  //       <div style={{ color: "red" }}>All fields are required</div>
-  //     );
-  //   }
-  // };
     
   const fetchUserData = () => {
     axios.post("http://127.0.0.1:8000/api/get_data/single_user", { user_id: userId })

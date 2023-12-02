@@ -60,6 +60,13 @@ const UserHireEmployee = ({ userId, setUserId }) => {
     fetchUserProperties();
   };
 
+  const handleRemoveClick = (employee) => {
+    console.log(`Hire button clicked for employee ${employee.type}`);
+    setselectedEmployeeId(employee.employee_id);
+    setselectedEmployeeType(employee.type);
+    fetchUserProperties();
+  };
+
   const handleModalClose = () => {
     setselectedEmployeeId(null);
     setselectedEmployeeType(null);
@@ -138,6 +145,14 @@ const UserHireEmployee = ({ userId, setUserId }) => {
                       onClick={() => handleHireClick(employee)}
                     >
                       Hire
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleRemoveClick(employee)}
+                    >
+                      Remove
                     </button>
                   </td>
                 </tr>

@@ -1,9 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const UserMarketplace = () => {
+const UserMarketplace = ({setPropertyId}) => {
   const [userProperties, setUserProperties] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/marketplace/marketplace_properties')
@@ -16,6 +18,16 @@ const UserMarketplace = () => {
         setUserProperties([]); // set to an empty array or handle the error appropriately
       });
   }, []);
+   
+  const handleViewDetails = (propertyId) => {
+    console.log(propertyId)
+    setPropertyId(propertyId);
+    navigate(`../PropertyDetails/`);
+    // Redirect to PropertyDetails page or perform navigation as needed
+    // Example using React Router: history.push('/PropertyDetails');
+  };
+
+
 
   return (
     <>
@@ -57,8 +69,10 @@ const UserMarketplace = () => {
                       </div>
                     </div>
                     <div className="d-flex pt-1">
-                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  >
-                      Buy Property
+                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  
+                      onClick={() => handleViewDetails(property.property_id)}
+                     >
+                      View Details
                       </button>
                     </div>
                   </div>

@@ -105,7 +105,7 @@ const UserDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
         {userProperties.map(property => (
           <div className="col-sm-12" key={property.property_id}>
             <div className=' py-4 px-1 h-10'>
-            <div className="card" style={{ borderRadius: '15px', width: '900px', backgroundColor: '#FFFFFF' }}>
+            <div className="card" style={{ borderRadius: '15px', width: 'flex', backgroundColor: '#FFFFFF' }}>
               <div className="card-body p-4">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
