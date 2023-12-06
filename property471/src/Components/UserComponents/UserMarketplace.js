@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const UserMarketplace = ({setPropertyId}) => {
+const UserMarketplace = ({setPropertyId, propertyId}) => {
   const [userProperties, setUserProperties] = useState([]);
   const navigate = useNavigate();
 
@@ -19,9 +19,10 @@ const UserMarketplace = ({setPropertyId}) => {
       });
   }, []);
    
-  const handleViewDetails = (propertyId) => {
-    console.log(propertyId)
-    setPropertyId(propertyId);
+  const handleViewDetails = (propertyid) => {
+    console.log(propertyid);
+    setPropertyId(propertyid);
+    console.log(`${propertyId} page`);
     navigate(`../PropertyDetails/`);
     // Redirect to PropertyDetails page or perform navigation as needed
     // Example using React Router: history.push('/PropertyDetails');
