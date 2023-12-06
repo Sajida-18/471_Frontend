@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { Button} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import UserDashboard from './UserDashboard';
 
 const UserEditProfile = ({ userId, setUserImagePath}) => {
-  // const [isEditingProfile, setEditingProfile] = useState(false);
   
 
   const [name, setName] = useState('');
@@ -13,8 +11,7 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [editProfileErrorMessage, setEditProfileErrorMessage] = useState('');
+  // const [editProfileErrorMessage, setEditProfileErrorMessage] = useState('');
 
   const [profilePicture, setProfilePicture] = useState(null);
 
@@ -22,10 +19,30 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
 
  
   const navigate = useNavigate();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          'http://127.0.0.1:8000/api/get_data/single_user',
+          { user_id: userId }
+        );
+
+        const userData = response.data.data;
+
+        setName(userData.name);
+        setNumber(userData.phone);
+        setEmail(userData.email);
+        setAddress(userData.address);
+        setPassword(userData.password);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
   const handleSaveProfile = async () => {
     try {
-      if (name && password && confirmPassword && number && address && email) {
-        if (password === confirmPassword) {
           const formData = new FormData();
           formData.append('user_id', userId);
           formData.append('name', name);
@@ -60,9 +77,9 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
             // Conditionally navigate based on user type
             if (userType === 'user') {
               navigate('/UserDashboard');
-            } else if (userType === 'agent') {
-              console.log(response2.data.data.user_image_path)
-              navigate('/AgentDashboard');
+            // } else if (userType === 'agent') {
+            //   console.log(response2.data.data.user_image_path)
+            //   navigate('/AgentDashboard');
             } else if (userType === 'admin') {
               console.log(response2.data.data.user_image_path)
               navigate('/AdminDashboard');
@@ -74,16 +91,7 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
               response.status
             );
           }
-        } else {
-          setEditProfileErrorMessage(
-            <div style={{ color: 'red' }}>Passwords do not match</div>
-          );
-        }
-      } else {
-        setEditProfileErrorMessage(
-          <div style={{ color: 'red' }}>All fields are required</div>
-        );
-      }
+        
     } catch (error) {
       console.error('Network/server error:', error);
     }
@@ -167,19 +175,6 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
       </div>
 
       <div className="mb-3">
-      <label htmlFor="confirmPassword"  className="form-label">
-        Confirm Password
-        </label>
-      <input
-        type="text"
-        id="confirmPassword"
-        className="form-control"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
-      </div>
-
-      <div className="mb-3">
       <label htmlFor="profilePicture" className="form-label">
         Profile Picture
         </label>
@@ -191,9 +186,9 @@ const UserEditProfile = ({ userId, setUserImagePath}) => {
       />
       </div>
 
-      {editProfileErrorMessage && (
+      {/* {editProfileErrorMessage && (
         <div className="error-message">{editProfileErrorMessage}</div>
-      )}
+      )} */}
 
       <Button variant="success" onClick={handleSaveProfile} className="mt-3">
         Save Profile

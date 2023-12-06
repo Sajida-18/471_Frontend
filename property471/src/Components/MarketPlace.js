@@ -37,20 +37,20 @@ const Marketplace = () => {
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
                     <img
-                      src={property.imagePath || 'https://www.indiashotels.com/webadmin/thumbs/863706-622c611d19cc5ffd9618c30d_saptha%20gallery%20images%203.jpg'}
+                      src={property.imagePath || 'https://media.discordapp.net/attachments/1165504181126320249/1180218866731864217/property_stock.png?ex=657c9f79&is=656a2a79&hm=3c307248e3fcf4571245743e3ee2a17f0f5d1129fede908d289cd04105fb45ab&=&format=webp&quality=lossless&width=468&height=468'}
                       alt="Property"
                       className="img-fluid"
                       style={{ width: '180px', borderRadius: '10px' }}
                     />
                   </div>
                   <div className="flex-grow-1 ms-3">
-                    <h5 className="mb-1">{property.property_name}</h5>
+                    <h5 className="mb-1">{property.property_id}</h5>
                     <p className="mb-2 pb-1" style={{ color: '#2b2a2a' }}>
                     </p>
                     <div className="d-flex justify-content-start rounded-3 p-2 mb-2" style={{ backgroundColor: '#efefff' }}>
                       <div className="px-5">
-                        <p className="small text-muted mb-1">Property Id</p>
-                        <p className="mb-0 ">{property.property_id}</p>
+                        <p className="small text-muted mb-1">Property Name</p>
+                        <p className="mb-0 ">{property.property_name}</p>
                       </div>
                       <div className="px-5">
                         <p className="small text-muted mb-1">Location</p>

@@ -60,8 +60,8 @@ function Navbar(props) {
     agent: [
       { label: 'Agent Dashboard', path: '/AgentDashboard' },
       { label: 'Marketplace', path: '/AgentMarketplace' },
-      { label: 'Offers', path: '/Offers' },
-      { label: 'Notification', path: '/AgentNotification' },
+      // { label: 'Offers', path: '/Offers' },
+      // { label: 'Notification', path: '/AgentNotification' },
       { label: 'Logout', path: '/', onClick: handleLogout },
     ],
     user: [

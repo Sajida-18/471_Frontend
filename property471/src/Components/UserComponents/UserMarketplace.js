@@ -36,13 +36,13 @@ const UserMarketplace = () => {
                     />
                   </div>
                   <div className="flex-grow-1 ms-3">
-                    <h5 className="mb-1">{property.property_name}</h5>
+                    <h5 className="mb-1">{property.property_id}</h5>
                     <p className="mb-2 pb-1" style={{ color: '#2b2a2a' }}>
                     </p>
                     <div className="d-flex justify-content-start rounded-3 p-2 mb-2" style={{ backgroundColor: '#F5FFFAf' }}>
                       <div className="px-5">
-                        <p className="small text-muted mb-1">Property Id</p>
-                        <p className="mb-0 ">{property.property_id}</p>
+                        <p className="small text-muted mb-1">Property Name</p>
+                        <p className="mb-0 ">{property.property_name }</p>
                       </div>
                       <div className="px-5">
                         <p className="small text-muted mb-1">Location</p>
