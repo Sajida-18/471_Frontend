@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import Card from 'react-bootstrap/Card';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const UserMarketplace = () => {
+const UserMarketplace = ({setPropertyId, propertyId}) => {
   const [userProperties, setUserProperties] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/marketplace/marketplace_properties')
@@ -17,6 +18,17 @@ const UserMarketplace = () => {
         setUserProperties([]); // set to an empty array or handle the error appropriately
       });
   }, []);
+   
+  const handleViewDetails = (propertyid) => {
+    console.log(propertyid);
+    setPropertyId(propertyid);
+    console.log(`${propertyId} page`);
+    navigate(`../PropertyDetails/`);
+    // Redirect to PropertyDetails page or perform navigation as needed
+    // Example using React Router: history.push('/PropertyDetails');
+  };
+
+
 
   return (
     <>
@@ -57,11 +69,13 @@ const UserMarketplace = () => {
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
                     </div>
-                    {/* <div className="d-flex pt-1">
-                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  >
-                      Buy Property
+                    <div className="d-flex pt-1">
+                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  
+                      onClick={() => handleViewDetails(property.property_id)}
+                     >
+                      View Details
                       </button>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
