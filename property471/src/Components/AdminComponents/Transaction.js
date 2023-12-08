@@ -28,6 +28,24 @@ const Transaction = ({setPropertyId, propertyId}) => {
     // Example using React Router: history.push('/PropertyDetails');
   };
 
+  const handleApprove = (propertyid) => {
+    console.log(propertyid);
+    setPropertyId(propertyid);
+    console.log(`${propertyId} page`);
+    navigate(`../PropertyDetails/`);
+    // Redirect to PropertyDetails page or perform navigation as needed
+    // Example using React Router: history.push('/PropertyDetails');
+  };
+
+  const handleReject = (propertyid) => {
+    console.log(propertyid);
+    setPropertyId(propertyid);
+    console.log(`${propertyId} page`);
+    navigate(`../PropertyDetails/`);
+    // Redirect to PropertyDetails page or perform navigation as needed
+    // Example using React Router: history.push('/PropertyDetails');
+  };
+
 
 
   return (
@@ -47,7 +65,7 @@ const Transaction = ({setPropertyId, propertyId}) => {
                       className="img-fluid"
                       style={{ width: '180px', borderRadius: '10px' }}
                     />
-                    <p className="mb-0"><a href="#!" className="text-muted">view details</a></p>
+                    <p className="mb-0"><a  onClick={() => handleViewDetails(property.property_id)} className="text-muted">view details</a></p>
                   </div>
                   <div className="flex-grow-1 ms-3">
                     <h5 className="mb-1">{property.property_name}</h5>
@@ -81,12 +99,12 @@ const Transaction = ({setPropertyId, propertyId}) => {
                     </div>
                     <div className="d-flex pt-1">
                       <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  
-                      onClick={() => handleViewDetails(property.property_id)}
+                      onClick={() => handleApprove(property.property_id)}
                      >
                       Approve
                       </button>
                       <button type="button" className="btn btn-outline-danger me-1 flex-grow-1"  
-                      onClick={() => handleViewDetails(property.property_id)}
+                      onClick={() => handleReject(property.property_id)}
                      >
                       Reject
                       </button>
