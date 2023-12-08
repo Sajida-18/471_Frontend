@@ -25,7 +25,6 @@ const Home = () => {
   return (
     <>
      <div style={bodyStyle}>
-      {/* Hero Section */}
       <section style={heroStyle} className="hero">
         <div className="container">
           <h1>Welcome to Our Property Management Services</h1>
@@ -43,7 +42,7 @@ const Home = () => {
             
             {/* Featured Property Cards */}
             <div className="col-md-4">
-              <div className="card">
+              <div className="card mb-2">
                 <img src="https://www.medvillaspain.co.uk/images/viviendas/2776/g_7dtqqckuur0x0x5g5t4u.jpg" className="card-img-top" alt="Property 1" />
                 <div className="card-body">
                   <h5 className="card-title">Luxury Villa</h5>
@@ -53,7 +52,7 @@ const Home = () => {
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card">
+              <div className="card mb-2">
                 <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="card-img-top" alt="Property 2" />
                 <div className="card-body">
                   <h5 className="card-title">Modern Apartment</h5>
@@ -63,7 +62,7 @@ const Home = () => {
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card">
+              <div className="card mb-2">
                 <img src="https://images.unsplash.com/photo-1416331108676-a22ccb276e35?q=80&w=1467&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="card-img-top" alt="Property 3" />
                 <div className="card-body">
                   <h5 className="card-title">Cozy Cottage</h5>
@@ -73,7 +72,7 @@ const Home = () => {
               </div>
             </div>
             <div className="col-md-4">
-              <div className="card">
+              <div className="card mb-2">
                 <img src="https://images.lifestyleasia.com/wp-content/uploads/sites/6/2022/03/04111335/amandari-indonesia-suite-exterior-and-pool_original_11588-2-1401x900.jpg" className="card-img-top" alt="Property 4" />
                 <div className="card-body">
                   <h5 className="card-title">Resort</h5>

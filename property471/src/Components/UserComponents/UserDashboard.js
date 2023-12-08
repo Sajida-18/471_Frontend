@@ -202,7 +202,7 @@ const UserDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
         if (response.status === 201) {
           console.log("Property removed successfully");
           fetchUserProperties();
-        } else if (response.status === 402) {
+        } else if (response.status === 202) {
           setError("Cannot remove property. Employee hired on property.");
         } else {
           setError(`Failed to remove property with status code: ${response.status}`);
@@ -211,6 +211,9 @@ const UserDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
       .catch((error) => {
         setError(`Cannot remove property. Employee hired on property:  ${propertyId}`);
       });
+      setTimeout(() => {
+        setError(null); // Clear the message after 5 seconds
+      }, 5000);
   };
 
 

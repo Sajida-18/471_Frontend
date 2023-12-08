@@ -1,9 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
+import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 
-const UserMarketplace = () => {
+const AdminMarketplace = () => {
   const [userProperties, setUserProperties] = useState([]);
+  const [removeMessage, setRemoveMessage] = useState(null);
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/marketplace/marketplace_properties')
@@ -17,12 +19,39 @@ const UserMarketplace = () => {
       });
   }, []);
 
+  const removeFromMarketplace = (propertyId) => {
+    axios.post('http://127.0.0.1:8000/api/marketplace/remove_from_marketplace', { property_id: propertyId })
+      .then(response => {
+        console.log('Property removed successfully:', response.data);
+        setRemoveMessage(`${propertyId} has been successfully removed.`);
+
+        setTimeout(() => {
+          setRemoveMessage(null); // Clear the message after 5 seconds
+        }, 5000); // 5000 milliseconds = 5 seconds
+
+        // Update the userProperties state to reflect the removal.
+        setUserProperties(userProperties.filter(property => property.property_id !== propertyId));
+      })
+      .catch(error => {
+        console.error('Error removing property:', error);
+        setRemoveMessage(`Failed to remove property ${propertyId}. Please try again.`);
+
+        setTimeout(() => {
+          setRemoveMessage(null); // Clear the message after 5 seconds
+        }, 5000); // 5000 milliseconds = 5 seconds
+      });
+  };
   return (
     <>
-   <div className="mt-4" >
+    {removeMessage && (
+        <div className="mt-3 alert alert-success" role="alert">
+          {removeMessage}
+        </div>
+      )}
+   <div className="mt-4">
         {Array.isArray(userProperties) &&  userProperties.map(property => (
           <div className="col-sm-12" key={property.property_id}>
-            <div className=' py-1 px-1 h-10' style={{backgroundColor:"#F5FFFAf"}}>
+            <div className=' py-4 px-1 h-10'>
             <div className="card" style={{ borderRadius: '15px', width: 'flex', backgroundColor: '#FFFFFF' }}>
               <div className="card-body p-4">
                 <div className="d-flex text-black">
@@ -38,10 +67,10 @@ const UserMarketplace = () => {
                     <h5 className="mb-1">{property.property_id}</h5>
                     <p className="mb-2 pb-1" style={{ color: '#2b2a2a' }}>
                     </p>
-                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2" style={{ backgroundColor: '#F5FFFAf' }}>
+                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2" style={{ backgroundColor: '#F5FFFA' }}>
                       <div className="px-5">
                         <p className="small text-muted mb-1">Property Name</p>
-                        <p className="mb-0 ">{property.property_name }</p>
+                        <p className="mb-0 ">{property.property_name}</p>
                       </div>
                       <div className="px-5">
                         <p className="small text-muted mb-1">Location</p>
@@ -60,7 +89,7 @@ const UserMarketplace = () => {
                       <p className="mb-0 ">{property.market_status}</p>
                       </div>
                       <div className="px-5">
-                      <p className="small text-muted mb-1">Hired Agent</p>
+                      <p className="small text-muted mb-1">Hire Agent</p>
                       {property.agent_id ? (
                         <p className="mb-0 ">{property.agent_id}</p>
                       ) : (
@@ -68,13 +97,14 @@ const UserMarketplace = () => {
                       )}
                     </div>
                     <div className="px-5">
-                      <p className="small text-muted mb-1">Hired Support</p>
+                      <p className="small text-muted mb-1">Hire Support</p>
                       {property.support_id ? (
                         <p className="mb-0 ">{property.support_id}</p>
                       ) : (
                         <p className="mb-0">No Support Hired</p>
                       )}
                     </div>
+                    
                       {/* <div className="d-flex pt-1" align="right">
                       <button type="button" className="btn btn-outline-success me-1 flex-grow-1" >
                         Remove Property
@@ -83,8 +113,8 @@ const UserMarketplace = () => {
                       
                     </div>
                     <div className="d-flex pt-1">
-                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  >
-                        Buy property
+                      <button type="button" className="btn btn-outline-danger me-1 flex-grow-1" onClick={() => removeFromMarketplace(property.property_id)}  >
+                        Remove from Marketplace
                       </button>
                     </div>
                   </div>
@@ -95,8 +125,11 @@ const UserMarketplace = () => {
           </div>
         ))}
       </div>
+
     </>
   );
 };
 
-export default UserMarketplace;
+export default AdminMarketplace;
+
+

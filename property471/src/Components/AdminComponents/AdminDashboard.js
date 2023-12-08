@@ -37,8 +37,8 @@ const AdminDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
   }, [userId]); 
 
   return (
-    <>
-    <div className="  p-4 mb-4 rounded-lg" >
+   
+    <div className="  p-4 mb-4 rounded-lg" style={{backgroundColor:"white"}}>
       {/* <h className="text">Dashboard</h> */}
       <div className="mt-4 ">
         {/* Display individual user information */}
@@ -59,7 +59,7 @@ const AdminDashboard = ({ userId, setUserId, setUserType, userImagePath }) => {
         </div>
       </div>
       </div>
-    </>
+   
 
   );
 };
