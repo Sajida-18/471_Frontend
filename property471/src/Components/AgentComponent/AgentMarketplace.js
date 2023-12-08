@@ -85,6 +85,10 @@ const Marketplace = () => {
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
                       <div className="px-5">
+                      <p className="small text-muted mb-1">status</p>
+                      <p className="mb-0 ">{property.market_status}</p>
+                      </div>
+                      <div className="px-5">
                       <p className="small text-muted mb-1">Hire Agent</p>
                       {property.agent_id ? (
                         <p className="mb-0 ">{property.agent_id}</p>

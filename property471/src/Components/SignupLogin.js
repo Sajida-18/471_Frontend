@@ -6,7 +6,7 @@ import "./SignupLogin.css";
 import "./modal.css"; // Import your CSS file
 import axios from "axios";
 
-const CustomModal = ({ isOpen, message, onClose }) => {
+const CustomModal = ({ isOpen, message, onClose,userid }) => {
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -20,11 +20,13 @@ const CustomModal = ({ isOpen, message, onClose }) => {
     <div className={`custom-modal ${isOpen ? "open" : "closed"}`}>
       <div className="modal-content">
         <div className="modal-header">
-          <h2>Sign Up Successful!</h2>
+          <div>
+          <h2> <span style={{ color: '#4ea685' }}> {userid}</span> Sign Up Successful! </h2>
+          </div>
           <button onClick={handleClose}>Login</button>
         </div>
         <div className="modal-body">
-          <p>{message}</p>
+          <p>{message}  </p>
         </div>
       </div>
     </div>
@@ -159,8 +161,11 @@ function SignupLogin({ setUserType, userId,setUserId,setUserImagePath}) {
               setUserType(response.data.data.type);
               // Set the modal message
               setModalMessage(
-                `Thank you for joining us! Use ${response.data.data.user_id} as your user id to log in to your account.`
+                <div>
+                  Thank you for joining us! Use <span style={{ fontWeight: 'bold', color: '#4ea685' }}>{response.data.data.user_id}</span> as your user id to log in to your account.
+                </div>
               );
+              
               // Open the modal
               setIsModalOpen(true);
               console.log("Registration was successful.");
@@ -319,6 +324,7 @@ function SignupLogin({ setUserType, userId,setUserId,setUserImagePath}) {
         <CustomModal
         isOpen={isModalOpen}
         message={modalMessage}
+        userid={userId}
         onClose={() => setIsModalOpen(false)}
       />
       </div>

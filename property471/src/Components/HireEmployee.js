@@ -35,7 +35,7 @@ const HireEmployee = () => {
       <div>
         <table className="table" >
           <thead>
-            <tr align="left">
+            <tr align="center">
             <th scope="col"></th>
               <th scope="col">JOB</th>
               <th scope="col">NAME</th>
@@ -47,7 +47,7 @@ const HireEmployee = () => {
           <tbody>
             {Array.isArray(employeeData) ? (
               employeeData.map((employee) => (
-                <tr key={employee.employee_id}>
+                <tr align="center" key={employee.employee_id}>
                   <td></td>
                   <td>{employee.type}</td>
                   <td>{employee.name}</td>
