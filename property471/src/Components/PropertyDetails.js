@@ -101,16 +101,29 @@ const PropertyDetails = ({ propertyId, userId }) => {
                     alt="Generic placeholder image"
                     className="img-fluid img-thumbnail mt-4 mb-2"
                     style={{ width: '150px', zIndex: 1 }}
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-outline-success"
-                    style={{ zIndex: 1 }}
-                    onClick={handleBuyClick}
-                  >
-                    Buy
-                  </button>
-                </div>
+                    />
+                    {propertyData.admin_approval === "False" ? (
+                      // "Booked" button if admin_approval is "False"
+                      <button
+                        type="button"
+                        className="btn btn-outline-secondary"
+                        style={{ zIndex: 1 }}
+                        disabled
+                      >
+                        Booked
+                      </button>
+                    ) : (
+                      // "Buy" button if admin_approval is not "False"
+                      <button
+                        type="button"
+                        className="btn btn-outline-success"
+                        style={{ zIndex: 1 }}
+                        onClick={handleBuyClick}
+                      >
+                        Buy
+                      </button>
+                    )}
+                  </div>
                 <div className="p-4 text-black" style={{ marginTop: '130px' }}>
                   <h5>{propertyData.property_name}</h5>
                   <p>{propertyData.property_location}</p>

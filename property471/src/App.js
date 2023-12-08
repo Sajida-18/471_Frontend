@@ -69,7 +69,7 @@ function App() {
       <Routes>
         {/* admin componests */}
       <Route path="/AdminDashboard" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId} propertyId={propertyId} setPropertyId={setPropertyId}/><AdminDashboard/></div>} />
-      <Route path="/Transaction" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId} propertyId={propertyId} setPropertyId={setPropertyId}/><Transaction/></div>} />
+      <Route path="/Transaction" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId} propertyId={propertyId} setPropertyId={setPropertyId}/><Transaction userType={userType}  userId={userId}  setUserId={setUserId} propertyId={propertyId} setPropertyId={setPropertyId}/></div>} />
       <Route path="/Hire" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId} propertyId={propertyId} setPropertyId={setPropertyId}/><Hire/></div>} />
       <Route path="/EmployeeDetails" element={<div><Navbar userType={userType}  userId={userId}  setUserId={setUserId} propertyId={propertyId} setPropertyId={setPropertyId}/><EmployeeDetails /></div>} />
 
