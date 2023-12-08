@@ -69,11 +69,12 @@ function Navbar(props) {
   const navItems = {
     admin: [
       { label: 'Admin Dashboard', path: '/AdminDashboard' },
-      { label: 'Transaction', path: '/Transaction' },
+      { label: 'Transactions', path: '/Transaction' },
       { label: 'Marketplace', path: '/AdminMarketPlace' },
       { label: 'Hire', path: '/Hire' },
-      { label: 'Employee Details', path: '/EmployeeDetails' },
-      { label: 'User Details', path: '/UserDetails' },
+      { label: 'Earnings', path: '/EarningDetails' },
+      { label: 'Employees', path: '/EmployeeDetails' },
+      { label: 'Users', path: '/UserDetails' },
       { label: 'Logout', path: '/', onClick: handleLogout },
     ],
     agent: [

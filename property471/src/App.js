@@ -28,6 +28,7 @@ import UserEditProfile from './Components/UserComponents/UserEditProfile';
 import AgentEditProfile from './Components/AgentComponent/AgentEditProfile';
 import AdminMarketPlace from './Components/AdminComponents/AdminMarketPlace';
 import UserDetails from './Components/AdminComponents/UserDetails';
+import EarningDetails from './Components/AdminComponents/EarningDetails';
 
 
 
@@ -72,6 +73,7 @@ function App() {
       <Route path="/EmployeeDetails" element={<div><Navbar propertyId={propertyId} setPropertyId={setPropertyId} userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  userId={userId}  setUserId={setUserId}/><EmployeeDetails /></div>} />
       <Route path="/AdminMarketPlace" element={<div><Navbar propertyId={propertyId} setPropertyId={setPropertyId} userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  userId={userId}  setUserId={setUserId}/><AdminMarketPlace propertyId={propertyId} setPropertyId={setPropertyId} userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType} userImagePath={userImagePath} setUserImagePath={setUserImagePath}/></div>} />
       <Route path="/UserDetails" element={<div><Navbar propertyId={propertyId} setPropertyId={setPropertyId} userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  userId={userId}  setUserId={setUserId}/><UserDetails userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType} userImagePath={userImagePath} setUserImagePath={setUserImagePath}/></div>} />
+      <Route path="/EarningDetails" element={<div><Navbar propertyId={propertyId} setPropertyId={setPropertyId} userImagePath={userImagePath} setUserImagePath={setUserImagePath} userType={userType}  userId={userId}  setUserId={setUserId}/><EarningDetails userType={userType} userId={userId} setUserId={setUserId} setUserType={setUserType} userImagePath={userImagePath} setUserImagePath={setUserImagePath}/></div>} />
 
 
        {/* User componenst */}
