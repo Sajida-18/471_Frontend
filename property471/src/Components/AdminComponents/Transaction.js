@@ -28,13 +28,16 @@ const UserDetails = () => {
           <thead>
             <tr align="center">
               <th scope="col">TRANSACTION_ID</th>
-              <th scope="col">BUYER_SENDS</th>
-              <th scope="col">SELLER_RECEIVES</th>
-              <th scope="col">AGENT_RECEIVES</th>
               <th scope="col">AGENT_ID</th>
               <th scope="col">BUYER_ID</th>
               <th scope="col">PROPERTY_ID</th>
               <th scope="col">SELLER_ID</th>
+              <th scope="col">BUYER_SENDS</th>
+              <th scope="col">SELLER_RECEIVES</th>
+              <th scope="col">AGENT_RECEIVES</th>
+              <th scope="col">ADMIN_RECEIVES</th>
+              
+              
               <th scope="col"></th>
             </tr>
           </thead>
@@ -43,13 +46,15 @@ const UserDetails = () => {
               transactionData.map((transaction) => (
                 <tr align="center" key={transaction.transaction_id	}>
                   <td>{transaction.transaction_id}</td>
-                  <td>{transaction.buyer_sends}</td>
-                  <td>{transaction.seller_receives}</td>
-                  <td>{transaction.agent_receives}</td>
                   <td>{transaction.agent_id}</td>
                   <td>{transaction.buyer_id}</td>
                   <td>{transaction.property_id}</td>
                   <td>{transaction.seller_id}</td>
+                  <td>{transaction.buyer_sends}</td>
+                  <td>{transaction.seller_receives}</td>
+                  <td>{transaction.agent_receives}</td>
+                  <td>{transaction.admin_receives}</td>
+                  
                 </tr>
               ))
             ) : (

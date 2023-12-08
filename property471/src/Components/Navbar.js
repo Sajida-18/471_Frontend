@@ -16,7 +16,7 @@ function Navbar(props) {
   const [walletInfo, setWalletInfo] = useState(null);
 
   useEffect(() => {
-    if (isLoggedIn && ['user', 'agent'].includes(userType)) {
+    if (isLoggedIn && ['user', 'agent', 'admin'].includes(userType)) {
       axios
         .post('http://127.0.0.1:8000/api/get_data/single_user', { user_id: props.userId })
         .then((response) => {
@@ -133,7 +133,7 @@ function Navbar(props) {
           
           </div>
           <div>
-          {['user', 'agent'].includes(userType) && (
+          {['user','agent','admin'].includes(userType) && (
               <div className='navbar text-black px-2' style={{backgroundColor:"white" ,borderRadius: '15px'}}>
                
               <Icon icon="et:wallet" />
