@@ -180,6 +180,33 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./hiremodal.css";
 
+// const PropertySelectionModal = ({ isOpen, onClose, children }) => {
+//   return (
+//     <div className={`modal ${isOpen ? 'open' : 'closed'}`}>
+//       <div className="modal-content">
+//         <div className="modal-header">
+//           <h2>Select Property</h2>
+//           <button onClick={onClose}>Add</button>
+//         </div>
+//         <div className="modal-body">
+//           {children}
+//         </div>
+//       </div>
+//     </div>
+//   );
+//};
+
+const UserHireEmployee = ({ userId, setUserId }) => {
+  const [employeeData, setEmployeeData] = useState([]);
+  const [selectedEmployeeId, setselectedEmployeeId] = useState(null);
+  const [selectedEmployeeType, setselectedEmployeeType] = useState(null);
+  const [userProperties, setUserProperties] = useState([]);
+  const [selectedPropertyId, setSelectedPropertyId] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+
+  // PropertySelectionModal component
 const PropertySelectionModal = ({ isOpen, onClose, children }) => {
   return (
     <div className={`modal ${isOpen ? 'open' : 'closed'}`}>
@@ -190,19 +217,28 @@ const PropertySelectionModal = ({ isOpen, onClose, children }) => {
         </div>
         <div className="modal-body">
           {children}
+          {/* Apply the new class to the dropdown */}
+          <div className="select-dropdown">
+            <label htmlFor="propertyId">Property ID: </label>
+            <select
+              id="propertyId"
+              value={selectedPropertyId}
+              onChange={(e) => setSelectedPropertyId(e.target.value)}
+            >
+              <option value="" disabled> Select a property</option>
+              {userProperties.map((property) => (
+                <option key={property.property_id} value={property.property_id}>
+                  {property.property_id}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-const UserHireEmployee = ({ userId, setUserId }) => {
-  const [employeeData, setEmployeeData] = useState([]);
-  const [selectedEmployeeId, setselectedEmployeeId] = useState(null);
-  const [selectedEmployeeType, setselectedEmployeeType] = useState(null);
-  const [userProperties, setUserProperties] = useState([]);
-  const [selectedPropertyId, setSelectedPropertyId] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/get_data/employee_data")
@@ -349,7 +385,7 @@ const UserHireEmployee = ({ userId, setUserId }) => {
         isOpen={isModalOpen}
         onClose={handleOkClick}
       >
-        <label htmlFor="propertyId">Property ID:</label>
+        {/* <label htmlFor="propertyId">Property ID:</label>
         <select
           id="propertyId"
           value={selectedPropertyId}
@@ -359,9 +395,9 @@ const UserHireEmployee = ({ userId, setUserId }) => {
           {userProperties.map((property) => (
             <option key={property.property_id} value={property.property_id}>
               {property.property_id}
-            </option>
-          ))}
-        </select>
+            </option> */}
+          {/* ))}
+        </select> */}
       </PropertySelectionModal>
     </div>
   );
