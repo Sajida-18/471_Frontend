@@ -116,9 +116,9 @@ const PropertyDetails = ({ propertyId, userId }) => {
                       // "Buy" button if admin_approval is not "False"
                       <button
                         type="button"
-                        className="btn btn-outline-success"
+                        className={`btn btn-outline-success ${userId === propertyData.user_id ? 'disabled' : ''}`}
                         style={{ zIndex: 1 }}
-                        onClick={handleBuyClick}
+                        onClick={userId !== propertyData.user_id ? handleBuyClick : null}
                       >
                         Buy
                       </button>

@@ -56,23 +56,53 @@ const AdminDashboard = ({ userId, setUserId, setUserType, userImagePath, setProp
     // Example using React Router: history.push('/PropertyDetails');
   };
 
-  const handleApprove = (propertyid) => {
-    console.log(propertyid);
-    setPropertyId(propertyid);
-    console.log(`${propertyId} page`);
-    navigate(`../PropertyDetails/`);
-    // Redirect to PropertyDetails page or perform navigation as needed
-    // Example using React Router: history.push('/PropertyDetails');
+  const handleApprove = (propertyid, buyerid) => {
+    axios
+      .post("http://127.0.0.1:8000/api/payment/give_approval", {
+        property_id: propertyid,
+        buyer_id: buyerid,
+      })
+      .then((response) => {
+        console.log(buyerid);
+        if (response.status === 201) {
+          console.log("Approved");
+          // You might want to update your local state or fetch data again if needed
+          setUserProperties((prevProperties) => prevProperties.filter(property => property.property_id !== propertyid));
+        } else if (response.status === 202) {
+          alert("Insufficient balance");
+        } else {
+          console.error("Failed to approve with status code:", response.status);
+        }
+      })
+      .catch((error) => {
+        alert("Insufficient balance");
+        console.error("Network/server error while approving:", error);
+      });
   };
-
+  
   const handleReject = (propertyid) => {
-    console.log(propertyid);
-    setPropertyId(propertyid);
-    console.log(`${propertyId} page`);
-    navigate(`../PropertyDetails/`);
-    // Redirect to PropertyDetails page or perform navigation as needed
-    // Example using React Router: history.push('/PropertyDetails');
+    axios
+      .post("http://127.0.0.1:8000/api/payment/reject_approval", {
+        property_id: propertyid,
+      })
+      .then((response) => {
+        console.log(propertyid);
+        if (response.status === 201) {
+          console.log("Rejected");
+          // You might want to update your local state or fetch data again if needed
+          setUserProperties((prevProperties) => prevProperties.filter(property => property.property_id !== propertyid));
+        } else if (response.status === 202) {
+          alert("hoye nai reject");
+        } else {
+          console.error("Failed to reject with status code:", response.status);
+        }
+      })
+      .catch((error) => {
+        alert("hoye nai reject");
+        console.error("Network/server error while rejecting:", error);
+      });
   };
+  
 
   return (
     <>
@@ -145,7 +175,7 @@ const AdminDashboard = ({ userId, setUserId, setUserType, userImagePath, setProp
                     </div>
                     <div className="d-flex pt-1">
                       <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  
-                      onClick={() => handleApprove(property.property_id)}
+                      onClick={() => handleApprove(property.property_id, property.buyer_id)}
                      >
                       Approve
                       </button>
