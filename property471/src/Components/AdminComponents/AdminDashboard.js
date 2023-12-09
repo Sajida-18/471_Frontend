@@ -81,19 +81,22 @@ const AdminDashboard = ({ userId, setUserId, setUserType, userImagePath, setProp
   };
   
   const handleReject = (propertyid) => {
+    console.log(propertyid);
     axios
-      .post("http://127.0.0.1:8000/api/payment/reject_approval", {
+      .post("http://127.0.0.1:8000/api/payment/admin_rejects", {
         property_id: propertyid,
       })
       .then((response) => {
-        console.log(propertyid);
+        // console.log(propertyid);
         if (response.status === 201) {
           console.log("Rejected");
           // You might want to update your local state or fetch data again if needed
           setUserProperties((prevProperties) => prevProperties.filter(property => property.property_id !== propertyid));
-        } else if (response.status === 202) {
-          alert("hoye nai reject");
-        } else {
+        } 
+        // else if (response.status === 202) {
+        //   alert("hoye nai reject");
+        // } 
+        else {
           console.error("Failed to reject with status code:", response.status);
         }
       })
@@ -136,7 +139,7 @@ const AdminDashboard = ({ userId, setUserId, setUserType, userImagePath, setProp
               <div className="d-flex text-black">
                 <div className="flex-shrink-0">
                     <img
-                      src={property.imagePath || 'https://www.indiashotels.com/webadmin/thumbs/863706-622c611d19cc5ffd9618c30d_saptha%20gallery%20images%203.jpg'}
+                      src={property.imagePath || 'https://media.discordapp.net/attachments/1165504181126320249/1180218866731864217/property_stock.png?ex=657c9f79&is=656a2a79&hm=3c307248e3fcf4571245743e3ee2a17f0f5d1129fede908d289cd04105fb45ab&=&format=webp&quality=lossless&width=468&height=468'}
                       alt="Property"
                       className="img-fluid"
                       style={{ width: '180px', borderRadius: '10px' }}

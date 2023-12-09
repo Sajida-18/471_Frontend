@@ -170,6 +170,7 @@ const UserHireEmployee = ({ userId, setUserId }) => {
           <thead>
             <tr align="center">
               <th scope="col"></th>
+              <th scope="col">ID</th>
               <th scope="col">JOB</th>
               <th scope="col">NAME</th>
               <th scope="col">EMAIL</th>
@@ -183,6 +184,7 @@ const UserHireEmployee = ({ userId, setUserId }) => {
               employeeData.map((employee) => (
                 <tr align="center" key={employee.employee_id}>
                   <td></td>
+                  <td>{employee.employee_id}</td>
                   <td>{employee.type}</td>
                   <td>{employee.name}</td>
                   <td>{employee.email}</td>
@@ -207,7 +209,7 @@ const UserHireEmployee = ({ userId, setUserId }) => {
               ))
             ) : (
               <tr>
-                <td colSpan="6">No employee data available</td>
+                <td colSpan="7">No employee data available</td>
               </tr>
             )}
           </tbody>

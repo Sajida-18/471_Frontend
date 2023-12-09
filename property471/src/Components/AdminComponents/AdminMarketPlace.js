@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
+import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
-const UserMarketplace = ({setPropertyId, propertyId}) => {
+const AdminMarketplace = () => {
   const [userProperties, setUserProperties] = useState([]);
-  const navigate = useNavigate();
+  const [removeMessage, setRemoveMessage] = useState(null);
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/marketplace/marketplace_properties')
@@ -18,25 +18,42 @@ const UserMarketplace = ({setPropertyId, propertyId}) => {
         setUserProperties([]); // set to an empty array or handle the error appropriately
       });
   }, []);
-   
-  const handleViewDetails = (propertyid) => {
-    console.log(propertyid);
-    setPropertyId(propertyid);
-    console.log(`${propertyId} page`);
-    navigate(`../PropertyDetails/`);
-    // Redirect to PropertyDetails page or perform navigation as needed
-    // Example using React Router: history.push('/PropertyDetails');
+
+  const removeFromMarketplace = (propertyId) => {
+    axios.post('http://127.0.0.1:8000/api/marketplace/remove_from_marketplace', { property_id: propertyId })
+      .then(response => {
+        console.log('Property removed successfully:', response.data);
+        setRemoveMessage(`${propertyId} has been successfully removed.`);
+
+        setTimeout(() => {
+          setRemoveMessage(null); // Clear the message after 5 seconds
+        }, 5000); // 5000 milliseconds = 5 seconds
+
+        // Update the userProperties state to reflect the removal.
+        setUserProperties(userProperties.filter(property => property.property_id !== propertyId));
+      })
+      .catch(error => {
+        console.error('Error removing property:', error);
+        setRemoveMessage(`Failed to remove property ${propertyId}. Please try again.`);
+
+        setTimeout(() => {
+          setRemoveMessage(null); // Clear the message after 5 seconds
+        }, 5000); // 5000 milliseconds = 5 seconds
+      });
   };
-
-
-
   return (
     <>
-   <div className="mt-4" >
+    {removeMessage && (
+        <div className="mt-3 alert alert-success" role="alert">
+          {removeMessage}
+        </div>
+      )}
+   <div className="mt-4">
         {Array.isArray(userProperties) &&  userProperties.map(property => (
-          <div className="col-md-4 mb-4 " key={property.property_id}>
-            <div className="card" style={{ borderRadius: '15px', width: '1300px', backgroundColor: '#FFFFFF' }}>
-              <div className="card-body">
+          <div className="col-sm-12" key={property.property_id}>
+            <div className=' py-4 px-1 h-10'>
+            <div className="card" style={{ borderRadius: '15px', width: 'flex', backgroundColor: '#FFFFFF' }}>
+              <div className="card-body p-4">
                 <div className="d-flex text-black">
                   <div className="flex-shrink-0">
                     <img
@@ -50,10 +67,10 @@ const UserMarketplace = ({setPropertyId, propertyId}) => {
                     <h5 className="mb-1">{property.property_id}</h5>
                     <p className="mb-2 pb-1" style={{ color: '#2b2a2a' }}>
                     </p>
-                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2" style={{ backgroundColor: '#efefff' }}>
-                      <div className="px-2">
+                    <div className="d-flex justify-content-start rounded-3 p-2 mb-2" style={{ backgroundColor: '#F5FFFA' }}>
+                      <div className="px-5">
                         <p className="small text-muted mb-1">Property Name</p>
-                        <p className="mb-0 ">{property.property_id}</p>
+                        <p className="mb-0 ">{property.property_name}</p>
                       </div>
                       <div className="px-5">
                         <p className="small text-muted mb-1">Location</p>
@@ -68,7 +85,7 @@ const UserMarketplace = ({setPropertyId, propertyId}) => {
                       <p className="mb-0 ">{property.property_size}</p>
                       </div>
                       <div className="px-5">
-                      <p className="small text-muted mb-1">Status</p>
+                      <p className="small text-muted mb-1">status</p>
                       <p className="mb-0 ">{property.market_status}</p>
                       </div>
                       <div className="px-5">
@@ -87,23 +104,32 @@ const UserMarketplace = ({setPropertyId, propertyId}) => {
                         <p className="mb-0">No Support Hired</p>
                       )}
                     </div>
+                    
+                      {/* <div className="d-flex pt-1" align="right">
+                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1" >
+                        Remove Property
+                      </button>
+                    </div> */}
+                      
                     </div>
                     <div className="d-flex pt-1">
-                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1"  
-                      onClick={() => handleViewDetails(property.property_id)}
-                     >
-                      View Details
+                      <button type="button" className="btn btn-outline-danger me-1 flex-grow-1" onClick={() => removeFromMarketplace(property.property_id)}  >
+                        Remove from Marketplace
                       </button>
                     </div>
                   </div>
                 </div>
-              </div>
+                </div>
+                </div>
             </div>
           </div>
         ))}
       </div>
+
     </>
   );
 };
 
-export default UserMarketplace;
+export default AdminMarketplace;
+
+

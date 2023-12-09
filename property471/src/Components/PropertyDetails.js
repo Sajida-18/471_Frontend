@@ -98,7 +98,7 @@ const PropertyDetails = ({ propertyId, userId }) => {
                 <div className="ms-4 mt-5 d-flex flex-column" style={{ width: '150px' }}>
                   <img
                     src='https://media.discordapp.net/attachments/1165504181126320249/1180218866731864217/property_stock.png?ex=657c9f79&is=656a2a79&hm=3c307248e3fcf4571245743e3ee2a17f0f5d1129fede908d289cd04105fb45ab&=&format=webp&quality=lossless&width=468&height=468'
-                    alt="Generic placeholder image"
+                    alt="Generic placeholder "
                     className="img-fluid img-thumbnail mt-4 mb-2"
                     style={{ width: '150px', zIndex: 1 }}
                     />
@@ -106,7 +106,7 @@ const PropertyDetails = ({ propertyId, userId }) => {
                       // "Booked" button if admin_approval is "False"
                       <button
                         type="button"
-                        className="btn btn-outline-secondary"
+                        className="btn btn-outline-danger"
                         style={{ zIndex: 1 }}
                         disabled
                       >
@@ -132,16 +132,20 @@ const PropertyDetails = ({ propertyId, userId }) => {
               <div className="p-4 text-black" style={{ backgroundColor: '#d9f2e4' }}>
                 <div className="d-flex justify-content-end text-center py-1">
                   <div>
-                    <p className="mb-1 h5">{propertyData.property_price}</p>
-                    <p className="small text-muted mb-0">Price</p>
+                    <p className="mb-1 h5">Price</p>
+                    <p className="small text-muted mb-0">{propertyData.property_price}</p>
                   </div>
                   <div className="px-3">
-                    <p className="mb-1 h5">{propertyData.property_size}</p>
-                    <p className="small text-muted mb-0">Size</p>
+                    <p className="mb-1 h5">Size</p>
+                    <p className="small text-muted mb-0">{propertyData.property_size}</p>
+                  </div>
+                  <div className="px-3">
+                    <p className="mb-1 h5">Owner</p>
+                    <p className="small text-muted mb-0">{propertyData.user_id}</p>
                   </div>
                   <div>
-                    <p className="mb-1 h5">{propertyData.agent_id}</p>
-                    <p className="small text-muted mb-0">Agent</p>
+                    <p className="mb-1 h5">Agent</p>
+                    <p className="small text-muted mb-0">{propertyData.agent_id}</p>
                   </div>
                 </div>
               </div>
@@ -149,27 +153,28 @@ const PropertyDetails = ({ propertyId, userId }) => {
                 <div className="mb-5">
                   <p className="lead fw-normal mb-1">About</p>
                   <div className="p-4" style={{ backgroundColor: '#d9f2e4' }}>
-                    <p className="font-italic mb-1">Web Developer</p>
-                    <p className="font-italic mb-1">Lives in New York</p>
-                    <p className="font-italic mb-0">Photographer</p>
+                    <p className="font-italic mb-1">
+Discover a curated selection of upscale properties, ranging from chic urban apartments to secluded villas
+ in picturesque settings. Our portfolio caters to diverse lifestyles, offering elegant interiors, 
+cutting-edge amenities, and personalized services for an elevated living experience.</p>
+  
                   </div>
                 </div>
                 <div className="d-flex justify-content-between align-items-center mb-4">
                   <p className="lead fw-normal mb-0">All photos</p>
-                  <p className="mb-0"><a href="#!" className="text-muted">Show all</a></p>
                 </div>
                 <div className="row g-2">
                   <div className="col mb-2">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                      alt="image 1"
+                      src="https://static.baranselgrup.com/nwm-248899-w1278-bavadi-villalari.png"
+                      alt="1"
                       className="w-100 rounded-3"
                     />
                   </div>
                   <div className="col mb-2">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                      alt="image 1"
+                      src="https://images.unsplash.com/photo-1416331108676-a22ccb276e35?q=80&w=1467&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      alt="2"
                       className="w-100 rounded-3"
                     />
                   </div>
@@ -177,15 +182,15 @@ const PropertyDetails = ({ propertyId, userId }) => {
                 <div className="row g-2">
                   <div className="col">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                      alt="image 1"
+                      src="https://static.baranselgrup.com/nwm-153195-w640-luks-villalar.png"
+                      alt="3"
                       className="w-100 rounded-3"
                     />
                   </div>
                   <div className="col">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                      alt="image 1"
+                      src="https://media-feed.resales-online.com/live/ShowFeedImage.asp?SecId=cc325d34320211eea7b50217bc231ef4&Id=P1&ImgId=X1002328&z=1691085400"
+                      alt="4"
                       className="w-100 rounded-3"
                     />
                   </div>
@@ -202,7 +207,9 @@ const PropertyDetails = ({ propertyId, userId }) => {
           <Modal.Title>Confirm Payment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Total Amount: {propertyData.property_price}</p>
+        <p>Total Amount: {parseInt(propertyData.property_price) + parseInt(propertyData.property_price * 0.1)}</p>
+
+          <p>10% Transaction fee</p>
           <Form>
             <Form.Group controlId="formPassword">
               <Form.Label>Enter Password to Confirm Transaction</Form.Label>
@@ -230,5 +237,3 @@ const PropertyDetails = ({ propertyId, userId }) => {
 };
 
 export default PropertyDetails;
-
-
