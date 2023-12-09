@@ -24,7 +24,7 @@ const HireEmployee = () => {
     console.log(`Hire button clicked for employee ${employeeId}`);
     navigate("/signupLogin")
 
-    // You can perform additional actions here, such as making an API call to hire the employee
+   
   };
 
   return (

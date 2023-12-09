@@ -27,11 +27,12 @@ const EarningDetails = () => {
         <table className="table">
           <thead>
             <tr align="center">
+            <th scope="col">EARNING_ID</th>
               <th scope="col">PROPERTY_ID</th>
               <th scope="col">USER_ID</th>
               <th scope="col">EARNING_FROM</th>
               <th scope="col">EARNING_AMOUNT</th>
-              <th scope="col">EARNING_ID</th>
+              
               
               
               
@@ -42,11 +43,12 @@ const EarningDetails = () => {
             {Array.isArray(earningData) && earningData.length > 0 ? (
               earningData.map((earning) => (
                 <tr align="center" key={earning.earning_id	}>
+                <td>{earning.earning_id}</td>
                 <td>{earning.property_id}</td>
                 <td>{earning.user_id}</td>
                 <td>{earning.earning_from}</td>
                 <td>{earning.earning_amount}</td>
-                <td>{earning.earning_id}</td>
+                
                   
                 </tr>
               ))

@@ -81,11 +81,7 @@ const Marketplace = () => {
                       )}
                     </div>
                     
-                      {/* <div className="d-flex pt-1" align="right">
-                      <button type="button" className="btn btn-outline-success me-1 flex-grow-1" >
-                        Remove Property
-                      </button>
-                    </div> */}
+                     
                       
                     </div>
                     <div className="d-flex pt-1">
