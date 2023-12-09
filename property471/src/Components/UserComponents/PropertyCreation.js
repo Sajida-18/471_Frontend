@@ -108,18 +108,7 @@ const PropertyCreation = ({ userId }) => {
             required
           />
         </div>
-        {/* <div className="mb-3">
-            <label htmlFor="propertyImage" className="form-label">
-              Property Image
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              id="propertyImage"
-              onChange={(e) => setPropertyImage(e.target.files[0])}
-              
-            />
-          </div> */}
+        
     </form>
 
         
