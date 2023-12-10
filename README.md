@@ -5,6 +5,7 @@ React js Frontend for the property management system
  
    1. Npm install react-router-dom (for routing )
    2. Npm install bootstrap
+   3. npm install @iconify/tools --save (for icon)
 
 # React command
  1. Npx create-react-app app_name (for create  new app)
